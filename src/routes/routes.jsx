@@ -26,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path:"/pacientes",
                 element:<Patient/>
+            },
+            {
+                path:"/turnos",
+                element:<Shift/>
             }
         ]
     }
