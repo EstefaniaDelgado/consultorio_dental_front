@@ -10,7 +10,6 @@ import {
   MenuList,
   MenuItem,
 } from '@material-tailwind/react';
-import Logo from '../../assets/logo-no-background.png';
 import { Link } from 'react-router-dom';
 import Dropdown from '../../assets/dropdown.svg';
 
@@ -30,7 +29,7 @@ const NavbarItem = () => {
     <ul className="mt-2 mb-4  flex flex-col justify-between gap-2 lg:w-full lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
-        variant="text"
+        variant="lead"
         color="blue-gray"
         className="flex items-center gap-x-2 p-1 font-normal "
       >
@@ -106,20 +105,20 @@ const NavbarItem = () => {
     <Navbar className="mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Link to={'/'} className="w-40">
-        <Typography>
-          DENTAL<strong>CARE</strong>
-        </Typography>
+          <Typography className="text-spacecadet text-xl font-extrabold">
+            DENTAL<strong className="text-robineggblue font-bold">CARE</strong>
+          </Typography>
         </Link>
 
         <div className="hidden lg:block w-1/2 max-w-[500px]  ">{navList}</div>
         <div className="flex items-center gap-x-1">
-          <Button
+          <button
             variant="gradient"
             size="sm"
-            className="hidden lg:inline-block"
+            className="hidden lg:inline-block text-robineggblue bg-spacecadetlow px-3 py-1 rounded"
           >
             <Link to={'/turnos'}>Saca Tu Turno</Link>
-          </Button>
+          </button>
         </div>
         <IconButton
           variant="text"
@@ -163,8 +162,16 @@ const NavbarItem = () => {
         <div className="container mx-auto">
           {navList}
           <div className="flex items-center gap-x-1">
-            <Button fullWidth variant="gradient" size="sm" className="">
-             <Link to={'/turnos'}> <span>Sacar turno!</span></Link>
+            <Button
+              fullWidth
+              variant="gradient"
+              size="sm"
+              className="bg-spacecadetlow text-robineggblue"
+            >
+              <Link to={'/turnos'}>
+                {' '}
+                <span>Sacar turno!</span>
+              </Link>
             </Button>
           </div>
         </div>
