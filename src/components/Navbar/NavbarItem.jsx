@@ -11,12 +11,11 @@ import {
   MenuItem,
 } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
-import Dropdown from '../../assets/dropdown.svg';
+import CustomDropdown from './components/CustomDropdown';
 
 const NavbarItem = () => {
   const [openNav, setOpenNav] = useState(false);
-  const [openMenuDentist, setOpenMenuDentist] = useState(false);
-  const [openMenuPacient, setOpenMenuPacient] = useState(false);
+ 
 
   useEffect(() => {
     window.addEventListener(
@@ -38,71 +37,13 @@ const NavbarItem = () => {
           Home
         </Link>
       </Typography>
-      <Menu open={openMenuPacient} handler={setOpenMenuPacient} allowHover>
-        <MenuHandler>
-          <Button
-            variant="text"
-            className="flex items-center gap-3 text-base font-normal capitalize tracking-normal"
-          >
-            Pacientes
-            <img
-              src={Dropdown}
-              alt="icono"
-              strokeWidth={2.5}
-              className={`h-3.5 w-3.5 transition-transform ${
-                openMenuPacient ? 'rotate-180' : ''
-              }`}
-            />
-          </Button>
-        </MenuHandler>
-        <MenuList>
-          <MenuItem>
-            <Link to={'/pacientes'} className="flex items-center">
-              Registrarse
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to={'/listar-pacientes'} className="flex items-center">
-              Lista de Pacientes
-            </Link>
-          </MenuItem>
-        </MenuList>
-      </Menu>
-      <Menu open={openMenuDentist} handler={setOpenMenuDentist} allowHover>
-        <MenuHandler>
-          <Button
-            variant="text"
-            className="flex items-center gap-3 text-base font-normal capitalize tracking-normal"
-          >
-            Odontologos
-            <img
-              src={Dropdown}
-              alt="icono"
-              strokeWidth={2.5}
-              className={`h-3.5 w-3.5 transition-transform ${
-                openMenuDentist ? 'rotate-180' : ''
-              }`}
-            />
-          </Button>
-        </MenuHandler>
-        <MenuList>
-          <MenuItem>
-            <Link to={'/odontologos'} className="flex items-center">
-              Registrarse
-            </Link>
-          </MenuItem>
-          <MenuItem>
-            <Link to={'/listar-odontologos'} className="flex items-center">
-              Lista de Odontologos
-            </Link>
-          </MenuItem>
-        </MenuList>
-      </Menu>
+      <CustomDropdown/>
+      <CustomDropdown/>
     </ul>
   );
 
   return (
-    <Navbar className="mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4">
+    <Navbar className="bg-aliceblue mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Link to={'/'} className="w-40">
           <Typography className="text-spacecadet text-xl font-extrabold">
