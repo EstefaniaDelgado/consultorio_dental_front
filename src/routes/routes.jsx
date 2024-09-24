@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        index: true, // Ruta por defecto cuando acceden a "/"
+        index: true, 
         element: <Hero/>
       },
 
