@@ -33,8 +33,8 @@ const NavbarItem = () => {
         color="blue-gray"
         className="flex items-center gap-x-2 p-1 font-normal "
       >
-        {' '}
-        <Link to={'/'} className="flex items-center">
+        {" "}
+        <Link to={"/"} className="flex items-center">
           Home
         </Link>
       </Typography>

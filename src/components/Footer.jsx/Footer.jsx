@@ -1,42 +1,72 @@
-import  FbIcon  from '../../assets/facebook.svg';
-import InstaIcon from '../../assets/instagram.svg'
-import Ind from '../../assets/linkedin.svg'
-import Email from '../../assets/email.svg'
-import Phone from '../../assets/phone.svg'
-import Watch from '../../assets/watch.svg'
+import FbIcon from "../../assets/facebook.svg";
+import InstaIcon from "../../assets/instagram.svg";
+import Ind from "../../assets/linkedin.svg";
+import Email from "../../assets/email.svg";
+import Phone from "../../assets/phone.svg";
+import Watch from "../../assets/watch.svg";
+import X from "@/assets/x.svg";
+import Location from "@/assets/location.svg";
+import data from "@/utils/footerData.json";
+import Column from "./components/Column";
+import FooterIcon from "./components/FooterIcon";
+import Subscription from "../../views/Layout/components/Subscription/Subscription";
 
 const Footer = () => {
+  const footerColumns = data.data.map((column) => (
+    <Column key={column.title} title={column.title} links={column.links} />
+  ));
+
   return (
-    <section className="bg-blue-gray-300 w-full">
-      <article>
-        <h3>
-          Consultorio <strong>Dental</strong>
+    <section className="bg-paleblue w-full h-96 flex justify-evenly items-end py-12 relative mt-36">
+      <Subscription/>
+      <article className="w-2/12 flex flex-col gap-3">
+        <h3 className="text-spacecadet font-black text-lg pb-2">
+          DENTAL<span className="text-robineggblue">CARE</span>
         </h3>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-          Consequuntur, optio.
+        <p className="text-primary">
+          Ofrecemos servicios de calidad con personal calificado con más de 5
+          años de experiencia.
         </p>
-        <div className='flex gap-2' >
-          <img className="bg-white" src={FbIcon} alt="facebook"  />
-          <img className="bg-white" src={InstaIcon} alt="instagram" />
-          <img className="bg-white" src={Ind} alt="linkedin" />
+        <div className="flex gap-2 py-1.5">
+          <FooterIcon img={X} link="https://www.x.com" altText={"twitter"} />
+          <a
+            href="https://www.facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              className="bg-white dark:bg-spacecadet py-2 px-3 rounded-lg w-8 h-8"
+              src={FbIcon}
+              alt="facebook"
+            />
+          </a>
+          <FooterIcon
+            img={InstaIcon}
+            link="https://www.instagram.com"
+            altText={"instagram"}
+          />
         </div>
       </article>
-      <article>
-        <h3>Contáctanos</h3>
-        <div>
-          <div className='bg-white'>
-            <img src={Email} alt="email" />
-            <p>info@consultoriodental.com</p>
-          </div>
-          <div>
-            <img src={Phone} alt="teléfono" />
-            <p>+51 456 890 9300</p>
-          </div>
-          <div>
-            <img src={Watch} alt="horario" />
-            <p>Lun-Sab 9:00-5:00</p>
-          </div>
+      {footerColumns}
+      <article className="flex flex-col gap-3">
+        <h3 className="font-extrabold text-spacecadet text-lg pb-2">
+          Contáctanos
+        </h3>
+        <div className="flex gap-2">
+          <img src={Email} alt="email" />
+          <p>info@consultoriodental.com</p>
+        </div>
+        <div className="flex gap-2">
+          <img src={Phone} alt="teléfono" />
+          <p>+51 456 890 9300</p>
+        </div>
+        <div className="flex gap-2">
+          <img src={Watch} alt="horario" />
+          <p>Lun-Sab 9:00-5:00</p>
+        </div>
+        <div className="flex gap-2">
+          <img src={Location} alt="ubicación" />
+          <p>Ibagué, Colombia</p>
         </div>
       </article>
     </section>

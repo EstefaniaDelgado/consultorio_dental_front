@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "title": "Agencia",
+      "links": [
+        {
+          "href": "#",
+          "text": "¿Qué es DentalPro?"
+        },
+        {
+          "href": "#",
+          "text": "Colabora con nosotros"
+        },
+        {
+          "href": "#",
+          "text": "Quienes somos"
+        },
+        {
+          "href": "#",
+          "text": "FAQ"
+        }
+      ]
+    },
+    {
+      "title": "Soporte",
+      "links": [
+        {
+          "href": "#",
+          "text": "Llamada de consulta"
+        },
+        {
+          "href": "#",
+          "text": "Centro de soporte"
+        },
+        {
+          "href": "#",
+          "text": "Feedback"
+        },
+        {
+          "href": "#",
+          "text": "Cita"
+        }
+      ]
+    }
+  ]
+}
