@@ -1,36 +1,31 @@
-import DropdownIcon from "../../../assets/dropdown.svg"
-import { useState } from "react";
+import { useState } from 'react';
+import Dropdown from '../../../assets/dropdown.svg'
+import { Link } from 'react-router-dom';
 
-const CustomDropdown = () => {
+const CustomDropdown = ({name, list, register}) => {
+
   const [isOpen, setIsOpen] = useState(false);
 
-  
-  const handleMouseEnter = () => {
-    setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsOpen(false);
+    const handleClick = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
-    <div
-      className="relative inline-block"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {/* Elemento principal (item) */}
-      <div className="flex items-center cursor-pointer p-2">
-        <span className="mr-2">Opciones</span>
-        <img src={DropdownIcon} alt="" className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+    <div className="relative inline-block">
+    
+      <div
+        className="flex items-center cursor-pointer p-2"
+        onClick={handleClick}
+      >
+        <span className="mr-2 text-sm font-medium">{name}</span>
+        <img src={Dropdown} alt="depliegue icono" className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
       </div>
 
-      {/* Menú desplegable */}
+      
       {isOpen && (
-        <ul className="absolute left-1/2 transform -translate-x-1/2 mt-2 bg-white shadow-lg rounded-lg w-40 text-center">
-          <li className="p-2 hover:bg-gray-200 cursor-pointer">Opción 1</li>
-          <li className="p-2 hover:bg-gray-200 cursor-pointer">Opción 2</li>
-          <li className="p-2 hover:bg-gray-200 cursor-pointer">Opción 3</li>
+        <ul className="absolute left-1/2 transform -translate-x-1/2 mt-2 shadow-lg rounded-lg w-40 text-center bg-aliceblue ">
+          <li className="p-2 hover:bg-white cursor-pointer"><Link to={register} className='text-sm'>Registrar</Link></li>
+          <li className="p-2 hover:bg-white cursor-pointer"><Link to={list}className='text-sm'>Listar</Link></li>
         </ul>
       )}
     </div>

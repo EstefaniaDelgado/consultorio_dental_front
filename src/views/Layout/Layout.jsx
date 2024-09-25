@@ -10,11 +10,8 @@ const Layout = () => {
   return (
     <div className="w-full flex flex-col justify-center items-center min-h-screen bg-aliceblue">
       <NavbarItem />
-      <main className="flex flex-col flex-1 w-full max-w-screen-xl justify-center items-center">
+      <main className="py-12 flex flex-col flex-1 w-full max-w-screen-xl justify-center items-center">
         <Outlet />
-        <Staff />
-        <FAQ />
-        <Review />
       </main>
       <Footer />
     </div>

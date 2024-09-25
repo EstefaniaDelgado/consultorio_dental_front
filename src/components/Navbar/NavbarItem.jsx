@@ -5,17 +5,25 @@ import {
   Button,
   IconButton,
   Collapse,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
 } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
 import CustomDropdown from './components/CustomDropdown';
 
+const menuItems = [
+  {
+    name: 'Pacientes',
+    register: '/pacientes',
+    list: '/listar-pacientes',
+  },
+  {
+    name: 'Odontologos',
+    register: '/odontologos',
+    list: '/listar-odontologos',
+  },
+];
+
 const NavbarItem = () => {
   const [openNav, setOpenNav] = useState(false);
- 
 
   useEffect(() => {
     window.addEventListener(
@@ -24,21 +32,26 @@ const NavbarItem = () => {
     );
   }, []);
 
+  const renderList = () => {
+    return menuItems.map((item) => (
+      <CustomDropdown key={`item-path-${item.name}`} name={item.name} register={item.register} list={item.list} />
+    ));
+  };
+
   const navList = (
     <ul className="mt-2 mb-4  flex flex-col justify-between gap-2 lg:w-full lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
         as="li"
-        variant="lead"
+        variant="paragraph"
         color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-normal "
+        className="flex items-center gap-x-2 p-1 font-medium "
       >
-        {" "}
-        <Link to={"/"} className="flex items-center">
+        {' '}
+        <Link to={'/'} className="flex items-center">
           Home
         </Link>
       </Typography>
-      <CustomDropdown/>
-      <CustomDropdown/>
+     { renderList()}
     </ul>
   );
 
@@ -100,7 +113,7 @@ const NavbarItem = () => {
         </IconButton>
       </div>
       <Collapse open={openNav}>
-        <div className="container mx-auto">
+        <div className="container mx-auto text-black">
           {navList}
           <div className="flex items-center gap-x-1">
             <Button

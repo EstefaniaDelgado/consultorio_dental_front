@@ -4,7 +4,7 @@ import Shift from '../views/Shift/Shift';
 import Dentist from '../views/Dentist/Dentist';
 import Patient from '../views/Patient/Patient';
 import ListDentists from '../views/Dentist/components/ListDentists';
-import Hero from '../views/Layout/components/Hero';
+import Home from '../views/Layout/components/Home';
 
 const router = createBrowserRouter([
     {
@@ -12,11 +12,15 @@ const router = createBrowserRouter([
         element:<Layout/>,
         children:[
             {
-                path:"/turnos",
+             index:true,
+             element:<Home/>
+            },
+            {
+                path:"turnos",
                 element:<Shift/>
             },
             {
-                path:"/odontologos",
+                path:"odontologos",
                 element:<Dentist/>,
             },
             {
@@ -24,11 +28,11 @@ const router = createBrowserRouter([
                 element:<ListDentists/>
             },
             {
-                path:"/pacientes",
+                path:"pacientes",
                 element:<Patient/>
             },
             {
-                path:"/turnos",
+                path:"turnos",
                 element:<Shift/>
             }
         ]
