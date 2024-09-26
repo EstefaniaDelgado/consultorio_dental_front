@@ -93,34 +93,3 @@ const ListDentists = () => {
 };
 
 export default ListDentists;
-
-{
-  /* <div key={`dentist-${dentist.id}`} className="w-56 mx-auto h-full">
-<div className="rounded-xl overflow-hidden relative text-center p-4 group items-center flex flex-col max-w-sm hover:shadow-2xl transition-all duration-500 shadow-xl bg-white h-full border border-robineggblue  ">
-  <div className="text-gray-500 group-hover:scale-105 transition-all  ">
-    <img
-      src={`https://ui-avatars.com/api/?name=${dentist.nombre}&size=100&rounded=true`}
-      alt="avatar"
-    />
-  </div>
-  <div className="group-hover:pb-10 transition-all duration-500 delay-200">
-    <h1 className="font-semibold text-gray-700">
-      {dentist.nombre} {dentist.apellido}
-    </h1>
-    <p className="text-gray-500 text-sm">{dentist.matricula}</p>
-  </div>
-  <div className="flex items-center transition-all duration-500 delay-200 group-hover:bottom-3 -bottom-full absolute gap-2 justify-evenly w-full">
-    <div className="px-3 flex gap-3 text-2xl bg-robineggblue text-white p-1 hover:p-2 transition-all duration-500 delay-200 rounded-full shadow-sm">
-      <a className="hover:scale-110 transition-all duration-500 delay-200 cursor-pointer">
-        <img
-          onClick={() => handleOpen(dentist)}
-          src={EditIcon}
-          alt="Editar"
-        />
-      </a>
-      <DeleteDentist id={dentist.id} />
-    </div>
-  </div>
-</div>
-</div> */
-}
