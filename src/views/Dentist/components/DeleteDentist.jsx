@@ -10,8 +10,8 @@ const DeleteDentist = ({ id }) => {
         text: 'No será posible revertirlo.',
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#7383c1',
-        cancelButtonColor: '#f04d68',
+        confirmButtonColor: '#01CFC9',
+        cancelButtonColor: '#0F2650',
         confirmButtonText: 'Yes, delete it!',
       }).then(async (result) => {
         if (result.isConfirmed) {

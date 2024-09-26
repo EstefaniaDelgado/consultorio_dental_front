@@ -64,12 +64,12 @@ const RegisterFormDentist = () => {
       {/* Form */}
       <form
         onSubmit={handleSubmitForm}
-        className="flex flex-col gap-2 max-w-[350px] bg-white p-5 rounded-2xl relative shadow-2xl border border-lightgray "
+        className="flex flex-col gap-2 max-w-[350px] bg-white p-5 rounded-2xl relative shadow-2xl border border-robineggblue  "
       >
-        <p className="text-[28px] text-royalblue font-semibold tracking-tighter relative flex items-center pl-8">
+        <p className="text-[28px] text-robineggblue font-semibold tracking-tighter relative flex items-center pl-8">
           Registrar Odontologo
-          <span className="absolute left-0 w-4 h-4 bg-royalblue rounded-full"></span>
-          <span className="absolute left-0 w-4 h-4 bg-royalblue rounded-full animate-ping"></span>
+          <span className="absolute left-0 w-4 h-4 bg-robineggblue rounded-full"></span>
+          <span className="absolute left-0 w-4 h-4 bg-robineggblue rounded-full animate-ping"></span>
         </p>
         <p className="text-gray-600 text-sm">Ingresa los siguientes datos:</p>
 
@@ -130,7 +130,7 @@ const RegisterFormDentist = () => {
             error.apellido
           }
           type="submit"
-          className="w-full p-2 text-white bg-royalblue rounded-lg hover:bg-blue-700 transition"
+          className="w-full p-2 text-white bg-robineggblue rounded-lg hover:bg-light-blue-500 transition"
         >
           Enviar
         </button>

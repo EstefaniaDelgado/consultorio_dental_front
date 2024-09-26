@@ -52,17 +52,6 @@ const UpdateDentist = ({ open, handleOpen, dentist }) => {
         setError(response);
       } else {
         handleOpen();
-        // toast('Odontologo actualizado exitosamente!', {
-        //   position: "top-right",
-        //   type:'success',
-        //   autoClose: 1000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "light",
-        //   });
       }
     } catch (error) {
       console.log('Error al actualizar el dentista:', error);
@@ -77,13 +66,13 @@ const UpdateDentist = ({ open, handleOpen, dentist }) => {
   return (
     <>
       <Dialog open={open} size="xs" handler={handleOpen}>
-        <form onSubmit={handleSubmitForm}>
+        <form onSubmit={handleSubmitForm} >
           <div className="flex items-center justify-between">
             <DialogHeader className="flex flex-col items-start justify-center">
-              <p className="text-[28px] text-royalblue font-semibold tracking-tighter relative flex items-center pl-8">
+              <p className="text-[28px] text-robineggblue font-semibold tracking-tighter relative flex items-center pl-8">
                 Actualizar Datos
-                <span className="absolute left-0 w-4 h-4 bg-royalblue rounded-full"></span>
-                <span className="absolute left-0 w-4 h-4 bg-royalblue rounded-full animate-ping"></span>
+                <span className="absolute left-0 w-4 h-4 bg-robineggblue rounded-full"></span>
+                <span className="absolute left-0 w-4 h-4 bg-robineggblue rounded-full animate-ping"></span>
               </p>
             </DialogHeader>
             {/* Close Icon */}
@@ -146,8 +135,8 @@ const UpdateDentist = ({ open, handleOpen, dentist }) => {
               </label>
             </div>
           </DialogBody>
-          <DialogFooter className="space-x-2">
-            <Button variant="text" color="gray" onClick={handleCancelClick}>
+          <DialogFooter className="space-x-2 ">
+            <Button className='bg-spacecadet' onClick={handleCancelClick}>
               Cancelar
             </Button>
             <Button
@@ -160,7 +149,7 @@ const UpdateDentist = ({ open, handleOpen, dentist }) => {
                 error.apellido ||
                 error.matricula
               }
-             className='bg-royalblue'
+             className='bg-robineggblue'
             >
               Actualizar
             </Button>
