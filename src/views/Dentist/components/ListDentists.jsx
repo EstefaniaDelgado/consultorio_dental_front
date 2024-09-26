@@ -11,13 +11,20 @@ const ListDentists = () => {
   const [dentists, setDentists] = useState([]);
 
   const [selectedDentist, setSelectedDentist] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const api = async () => {
-      const response = await dentistService.getDentists();
-      setDentists([...response]);
+      try {
+        const response = await dentistService.getDentists();
+        setDentists([...response]);
+      } catch (error) {
+        console.error('Error fetching dentists:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     api();
   }, []);
@@ -53,7 +60,7 @@ const ListDentists = () => {
                   alt="Editar"
                 />
               </a>
-              <DeleteDentist id={dentist.id} />
+              <DeleteDentist id={dentist.id} setDentists={setDentists}/>
             </div>
           </div>
         </article>
@@ -70,9 +77,17 @@ const ListDentists = () => {
         NUESTROS ESPECIALISTAS
       </h2>
 
-      <section className="w-full my-8 mb-20 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {!dentists?.length ? (
-          <p className="row-span-2 col-start-2">No hay registros aun!</p>
+      <section className="relative w-full my-8 mb-20 grid md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+        {isLoading ? (
+          <div className=" absolute inset-0 text-center flex-col gap-4 w-full flex items-center justify-center">
+            <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
+              <div className="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-red-400 rounded-full"></div>
+            </div>
+          </div>
+        ) : !dentists.length ? (
+          <p className="absolute inset-0 flex items-center justify-center text-center text-spacecadet text-xl lg:text-2xl">
+            No hay registros aún!
+          </p>
         ) : (
           renderList()
         )}
@@ -82,11 +97,7 @@ const ListDentists = () => {
         dentist={selectedDentist}
         open={open}
         handleOpen={handleOpen}
-      />
-      <DeleteDentist
-        dentist={selectedDentist}
-        open={open}
-        handleOpen={handleOpen}
+        setDentists={setDentists}
       />
     </>
   );

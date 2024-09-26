@@ -2,7 +2,8 @@ import DeleteIcon from '../../../assets/delete-icon.svg';
 import dentistService from '../../../services/dentistService';
 import Swal from 'sweetalert2';
 
-const DeleteDentist = ({ id }) => {
+const DeleteDentist = ({ id, setDentists }) => {
+  
   const handleDeteleIcon = async () => {
     try {
       Swal.fire({
@@ -16,6 +17,9 @@ const DeleteDentist = ({ id }) => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           const response = await dentistService.deleteDentist(id);
+          //actualizar lista
+          const getCurrentList = await dentistService.getDentists();
+          setDentists([...getCurrentList]);
           Swal.fire({
             title: response,
             icon: 'success',

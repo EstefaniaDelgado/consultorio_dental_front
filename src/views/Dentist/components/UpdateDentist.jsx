@@ -8,11 +8,11 @@ import {
 import { useState, useEffect } from 'react';
 import dentistValidationFront from '../../../utils/dentistValidationFront';
 import dentistService from '../../../services/dentistService';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const UpdateDentist = ({ open, handleOpen, dentist }) => {
-  
+const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
+ 
   const [inputs, setInputs] = useState({
     nombre: '',
     apellido: '',
@@ -52,6 +52,9 @@ const UpdateDentist = ({ open, handleOpen, dentist }) => {
         setError(response);
       } else {
         handleOpen();
+        //actualizar lista
+        const getCurrentList = await dentistService.getDentists();
+        setDentists([...getCurrentList]);
       }
     } catch (error) {
       console.log('Error al actualizar el dentista:', error);
@@ -66,7 +69,7 @@ const UpdateDentist = ({ open, handleOpen, dentist }) => {
   return (
     <>
       <Dialog open={open} size="xs" handler={handleOpen}>
-        <form onSubmit={handleSubmitForm} >
+        <form onSubmit={handleSubmitForm}>
           <div className="flex items-center justify-between">
             <DialogHeader className="flex flex-col items-start justify-center">
               <p className="text-[28px] text-robineggblue font-semibold tracking-tighter relative flex items-center pl-8">
@@ -136,7 +139,7 @@ const UpdateDentist = ({ open, handleOpen, dentist }) => {
             </div>
           </DialogBody>
           <DialogFooter className="space-x-2 ">
-            <Button className='bg-spacecadet' onClick={handleCancelClick}>
+            <Button className="bg-spacecadet" onClick={handleCancelClick}>
               Cancelar
             </Button>
             <Button
@@ -149,13 +152,13 @@ const UpdateDentist = ({ open, handleOpen, dentist }) => {
                 error.apellido ||
                 error.matricula
               }
-             className='bg-robineggblue'
+              className="bg-robineggblue"
             >
               Actualizar
             </Button>
           </DialogFooter>
         </form>
-        <ToastContainer/>
+        <ToastContainer />
       </Dialog>
     </>
   );
