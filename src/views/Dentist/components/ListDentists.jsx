@@ -60,7 +60,7 @@ const ListDentists = () => {
                   alt="Editar"
                 />
               </a>
-              <DeleteDentist id={dentist.id} setDentists={setDentists}/>
+              <DeleteDentist id={dentist.id} setDentists={setDentists} />
             </div>
           </div>
         </article>
@@ -79,9 +79,10 @@ const ListDentists = () => {
 
       <section className="relative w-full my-8 mb-20 grid md:grid-cols-2 lg:grid-cols-3 gap-5 ">
         {isLoading ? (
-          <div className=" absolute inset-0 text-center flex-col gap-4 w-full flex items-center justify-center">
-            <div className="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
-              <div className="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-red-400 rounded-full"></div>
+          /* From Uiverse.io by devAaus */
+          <div class="absolute inset-0 flex-col gap-4 w-full flex items-center justify-center">
+            <div class="w-14 h-14 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
+              <div class="w-12 h-12 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-spacecadet rounded-full"></div>
             </div>
           </div>
         ) : !dentists.length ? (
