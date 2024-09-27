@@ -1,10 +1,7 @@
 import NavbarItem from "../../components/Navbar/NavbarItem";
 import { Outlet } from "react-router-dom";
 import Footer from "../../components/Footer.jsx/Footer";
-import Staff from "./components/Staff/Staff";
-import FAQ from "./components/FAQ/FAQ";
-import Review from "./components/Review/Review";
-import Subscription from "./components/Subscription/Subscription";
+
 
 const Layout = () => {
   return (
