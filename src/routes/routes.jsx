@@ -4,7 +4,8 @@ import Shift from '../views/Shift/Shift';
 import Dentist from '../views/Dentist/Dentist';
 import Patient from '../views/Patient/Patient';
 import ListDentists from '../views/Dentist/components/ListDentists';
-import Home from '../views/Layout/components/Home';
+import Home from '../views/Layout/components/Home/Home';
+
 
 const router = createBrowserRouter([
     {
