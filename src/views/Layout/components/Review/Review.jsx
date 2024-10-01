@@ -12,7 +12,7 @@ import StarFilled from "@/assets/star-filled.png";
 
 const Review = () => {
   return (
-    <div className="text-center w-full my-8">
+    <div className="text-center w-full mt-8 mb-20">
       <h2 className="text-robineggblue font-extrabold">NUESTRAS OPINIONES</h2>
       <h2 className="text-spacecadet font-bold text-4xl mt-4 mb-8">
         Lo que dicen de nosotros
