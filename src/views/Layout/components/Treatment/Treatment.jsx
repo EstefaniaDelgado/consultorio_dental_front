@@ -29,7 +29,7 @@ const treatments = [
 
 const renderCardsTreatments = () => {
   return treatments.map((treat) => (
-    <Card className="w-56 border-robineggblue dark:border-spacecadetlow dark:bg-gradient-to-r from-spacecadet to-spacecadetlow border-2 flex flex-col justify-center items-center p-2 rounded-3xl">
+    <Card key={`item-treat-${treat.name}`} className="w-56 border-robineggblue dark:border-spacecadetlow dark:bg-gradient-to-r from-spacecadet to-spacecadetlow border-2 flex flex-col justify-center items-center p-2 rounded-3xl">
       <div className="bg-aliceblue mt-3 rounded p-2">
         <img src={treat.img} alt="diente" className="w-14 h-14 " />
       </div>

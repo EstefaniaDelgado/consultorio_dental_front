@@ -2,6 +2,7 @@ import FAQ from '../FAQ/FAQ';
 import Hero from '../Hero/Hero';
 import Review from '../Review/Review';
 import Staff from '../Staff/Staff';
+import Study from '../Study/Study';
 import Treatment from '../Treatment/Treatment';
 
 const Home = () => {
@@ -9,6 +10,7 @@ const Home = () => {
     <>
       <Hero />
       <Treatment/>
+      <Study/>
       <Staff />
       <FAQ />
       <Review />
