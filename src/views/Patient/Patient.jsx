@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import RegisterFormPatient from "./components/RegisterFormPatient";
 
 const Patient = () => {
   return (
     <div>
-      Pacientes
+      <RegisterFormPatient />
     </div>
-  )
-}
+  );
+};
 
-export default Patient
+export default Patient;

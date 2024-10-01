@@ -17,7 +17,7 @@ const Footer = () => {
   ));
 
   return (
-    <section className="bg-paleblue w-full h-96 flex justify-evenly items-end py-12 relative mt-36">
+    <footer className="bg-paleblue w-full h-96 flex justify-evenly items-end py-12 relative mt-24">
       <Subscription/>
       <article className="w-2/12 flex flex-col gap-3">
         <h3 className="text-spacecadet font-black text-lg pb-2">
@@ -69,7 +69,7 @@ const Footer = () => {
           <p>Ibagué, Colombia</p>
         </div>
       </article>
-    </section>
+    </footer>
   );
 };
 

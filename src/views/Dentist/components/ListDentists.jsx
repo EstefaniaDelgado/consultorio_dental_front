@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
-import dentistService from '../../../services/dentistService';
-import { Typography } from '@material-tailwind/react';
-import EditIcon from '../../../assets/edit-icon.svg';
-import UpdateDentist from './UpdateDentist';
-import DeleteDentist from './DeleteDentist';
-import Asistent from '@/assets/Asistent.png';
+import { useEffect } from "react";
+import { useState } from "react";
+import dentistService from "../../../services/dentistService";
+import { Typography } from "@material-tailwind/react";
+import EditIcon from "../../../assets/edit-icon.svg";
+import UpdateDentist from "./UpdateDentist";
+import DeleteDentist from "./DeleteDentist";
+import Asistent from "@/assets/Asistent.png";
 
 const ListDentists = () => {
   const [dentists, setDentists] = useState([]);
@@ -21,7 +21,7 @@ const ListDentists = () => {
         const response = await dentistService.getDentists();
         setDentists([...response]);
       } catch (error) {
-        console.error('Error fetching dentists:', error);
+        console.error("Error fetching dentists:", error);
       } finally {
         setIsLoading(false);
       }
