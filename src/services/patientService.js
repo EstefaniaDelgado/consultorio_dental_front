@@ -17,6 +17,7 @@ const patientService = {
       console.log("Error al registrar paciente", error);
     }
   },
+
   getPatients: async () => {
     try {
       const response = await apiPatients.get("/listar");
@@ -25,6 +26,7 @@ const patientService = {
       console.log("Error al obtener pacientes", error);
     }
   },
+
   getPatient: async (id) => {
     try {
       const response = await apiPatients.get(`/${id}`);
@@ -33,6 +35,7 @@ const patientService = {
       console.log("Error al obtener paciente", error);
     }
   },
+
   updatePatient: async (id, data) => {
     try {
       const response = await apiPatients.put(`/actualizar/${id}`, data);
@@ -48,6 +51,7 @@ const patientService = {
       console.log("Error al actualizar paciente", error);
     }
   },
+
   deletePatient: async (id) => {
     try {
       const response = await apiPatients.delete(`/eliminar/${id}`);
