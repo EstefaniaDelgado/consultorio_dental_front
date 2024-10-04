@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "name": "Alessandro",
+      "review": "Personal amable y rápido... Lo recomiendo encarecidamente a cualquiera que necesite atención dental."
+    },
+    {
+      "name": "María",
+      "review": "Muy buenos profesionales, muy atentos y amables. Recomiendo la atención."
+    },
+    {
+      "name": "Miguel",
+      "review": "Excelente atención, muy amable y profesional. Lo recomiendo encarecidamente."
+    },
+    {
+      "name": "Pedro",
+      "review": "Excelente atención. Me sentí muy cómodo durante todo el procedimiento dental. Lo recomiendo sin duda."
+    },
+    {
+      "name": "Lucía",
+      "review": "Gran experiencia, el doctor fue muy paciente y cuidadoso. El tratamiento dental fue indoloro y eficaz."
+    },
+    {
+      "name": "Andrés",
+      "review": "Muy profesional, el servicio fue rápido y detallado. Salí muy satisfecho con los resultados del blanqueamiento dental."
+    }
+  ]
+}
