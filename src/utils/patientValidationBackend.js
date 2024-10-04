@@ -1,8 +1,9 @@
-const backendValidationPatient = (
-  { nombre, apellido, dni, fechaIngreso },
+export const backendValidationPatient = (
+  { nombre, apellido, dni, fechaIngreso, mensaje },
   status
 ) => {
   const errors = {};
+  const mensajeError = mensaje ? mensaje.split(":")[1] : null;
 
   if (nombre?.length) {
     errors.nombre = nombre;
@@ -13,6 +14,9 @@ const backendValidationPatient = (
   if (dni?.length) {
     errors.dni = dni;
   }
+  if (mensaje?.length) {
+    errors.dni = mensajeError;
+  }
   if (fechaIngreso?.length) {
     errors.fechaIngreso = fechaIngreso;
   }
@@ -22,4 +26,25 @@ const backendValidationPatient = (
   return errors;
 };
 
-export default backendValidationPatient;
+export const backendValidationHome = (
+  { calle, numero, localidad, provincia },
+  status
+) => {
+  const errors = {};
+  if (calle?.length) {
+    errors.calle = calle;
+  }
+  if (numero?.length) {
+    errors.numero = numero;
+  }
+  if (localidad?.length) {
+    errors.localidad = localidad;
+  }
+  if (provincia?.length) {
+    errors.provincia = provincia;
+  }
+  if (status) {
+    errors.status = status;
+  }
+  return errors;
+};
