@@ -18,3 +18,17 @@ export const homeValidationFront = ({ calle, numero, localidad, provincia }) => 
 
   return errors;
 };
+
+export const isButtonDisabled = (errors, patientValues, homeValues) => {
+  let disabled = true;
+  if (Object.keys(errors).length === 0) {
+    disabled = false;
+  }
+  if (Object.values(patientValues).some((value) => value === "")) {
+    disabled = true;
+  }
+  if (Object.values(homeValues).some((value) => value === "")) {
+    disabled = true;
+  }
+  return disabled;
+};

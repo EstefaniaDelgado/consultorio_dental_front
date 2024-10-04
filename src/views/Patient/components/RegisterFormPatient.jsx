@@ -4,6 +4,7 @@ import patientService from "@services/patientService";
 import { patientValidationFront } from "@utils/patientValidationFront";
 import { homeValidationFront } from "@utils/patientValidationFront";
 import { toast, ToastContainer } from "react-toastify";
+import { isButtonDisabled } from "../../../utils/patientValidationFront";
 const RegisterFormPatient = () => {
   const [patientInputs, setPatientInputs] = useState({
     nombre: "",
@@ -22,33 +23,47 @@ const RegisterFormPatient = () => {
   const navigate = useNavigate();
 
   const handleOnChangePatientInputs = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
     setPatientInputs({
       ...patientInputs,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
     setError(
       patientValidationFront({
         ...patientInputs,
-        [e.target.name]: e.target.value,
+        [name]: value,
       })
     );
   };
 
   const handleOnChangeHomeInputs = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
     setHomeInputs({
       ...homeInputs,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
     setError(
       homeValidationFront({
         ...homeInputs,
-        [e.target.name]: e.target.value,
+        [name]: value,
       })
     );
   };
 
+  const handleKeyDown = (event, inputValue) => {
+    if (event.key === "ArrowDown" && inputValue <= 0) {
+      event.preventDefault();
+    }
+  };
+
   const handleSubmitForm = async (e) => {
     e.preventDefault();
+
+    patientInputs.domicilioEntradaDto = homeInputs;
 
     const response = await patientService.postPatient(patientInputs);
 
@@ -62,7 +77,12 @@ const RegisterFormPatient = () => {
         fechaIngreso: "",
         domicilioEntradaDto: {},
       });
-      setError({});
+      setHomeInputs({
+        calle: "",
+        numero: "",
+        localidad: "",
+        provincia: "",
+      });
       toast("Paciente registrado exitosamente!", {
         position: "top-right",
         type: "success",
@@ -74,9 +94,9 @@ const RegisterFormPatient = () => {
         progress: undefined,
         theme: "light",
       });
-      setTimeout(() => {
-        navigate("/listar-pacientes");
-      }, 2000);
+        setTimeout(() => {
+          navigate("/listar-pacientes");
+        }, 2000);
     }
   };
 
@@ -139,11 +159,12 @@ const RegisterFormPatient = () => {
             <label>
               DNI
               <input
-                type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                type="number"
+                className="no-spin w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="dni"
                 value={patientInputs.dni}
+                onKeyDown={(e) => handleKeyDown(e, patientInputs.dni)}
                 placeholder="12345678"
               />
             </label>
@@ -155,13 +176,16 @@ const RegisterFormPatient = () => {
             <label>
               Fecha de ingreso
               <input
-                type="datetime-local"
+                type="date"
                 className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="fechaIngreso"
                 value={patientInputs.fechaIngreso}
               />
             </label>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.fechaIngreso ? error.fechaIngreso : null}
+            </span>
           </div>
         </div>
 
@@ -208,12 +232,13 @@ const RegisterFormPatient = () => {
             <label>
               Número
               <input
-                type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                type="number"
+                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black no-spin"
                 onChange={handleOnChangeHomeInputs}
                 name="numero"
                 value={homeInputs.numero}
                 placeholder="1234"
+                onKeyDown={(e) => handleKeyDown(e, homeInputs.numero)}
               />
             </label>
             <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
@@ -238,15 +263,7 @@ const RegisterFormPatient = () => {
           </div>
         </div>
         <button
-          disabled={
-            error.nombre ||
-            error.apellido ||
-            error.dni ||
-            error.calle ||
-            error.localidad ||
-            error.numero ||
-            error.provincia
-          }
+          disabled={isButtonDisabled(error, patientInputs, homeInputs)}
           type="submit"
           className="bg-robineggblue p-3 rounded-lg text-white w-1/2 mx-auto m-2 min-w-48"
         >
