@@ -10,7 +10,6 @@ const CardFAQ = () => {
   const [open, setOpen] = useState(0);
 
   const handleOpen = (value) => {
-    console.log(value);
     setOpen(open === value ? 0 : value);
   };
 
