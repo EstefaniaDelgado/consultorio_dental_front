@@ -65,7 +65,7 @@ const NavbarItem = () => {
         as="li"
         variant="paragraph"
         color="blue-gray"
-        className="flex items-center gap-x-2 p-1 font-medium "
+        className="flex items-center gap-x-2 px-6 py-3 font-medium"
       >
         {" "}
         <Link to={"/"} className="flex items-center text-spacecadet">
@@ -77,20 +77,18 @@ const NavbarItem = () => {
   );
 
   return (
-    <Navbar className="bg-aliceblue mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4">
+    <Navbar className="bg-aliceblue mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4 sticky top-0 z-50 rounded-t-none">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-        <Link to={"/"} className="w-40">
-          <Typography className="text-spacecadet text-xl font-extrabold">
-            DENTAL<strong className="text-robineggblue font-bold">CARE</strong>
+        <Link to={"/"}>
+          <Typography className="text-spacecadet text-2xl md:text-4xl font-extrabold">
+            DENTAL
+            <strong className="text-robineggblue font-extrabold">CARE</strong>
           </Typography>
         </Link>
 
         <div className="hidden lg:block w-1/2 max-w-[500px]  ">{navList}</div>
         <div className="flex items-center gap-x-1">
-          <button
-            // size="sm"
-            className="hidden lg:inline-block text-robineggblue bg-gradient-to-r from-spacecadet to-spacecadetlow px-3 py-2 rounded-lg"
-          >
+          <button className="hidden lg:inline-block text-robineggblue bg-gradient-to-r from-spacecadet to-spacecadetlow px-3 py-2 rounded-xl">
             <Link to={"/turnos"}>Saca Tu Turno</Link>
           </button>
         </div>

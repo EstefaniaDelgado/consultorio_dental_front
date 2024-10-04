@@ -11,7 +11,6 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const MenuCustomList = ({ name, options }) => {
   const [openMenu, setOpenMenu] = useState(false);
-  console.log(options);
 
   const renderItems = () => {
     return options.map((item, index) => (
@@ -44,7 +43,7 @@ const MenuCustomList = ({ name, options }) => {
           />
         </Button>
       </MenuHandler>
-      <MenuList className="hidden grid-cols-1 gap-3 overflow-visible lg:grid">
+      <MenuList className="grid lg:grid grid-cols-1 gap-3 overflow-visible">
         <ul className="flex w-full flex-col gap-1 outline-none">
           {renderItems()}
         </ul>
