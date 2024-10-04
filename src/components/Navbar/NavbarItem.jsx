@@ -1,24 +1,41 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   Navbar,
   Typography,
   Button,
   IconButton,
   Collapse,
-} from '@material-tailwind/react';
-import { Link } from 'react-router-dom';
-import CustomDropdown from './components/CustomDropdown';
+} from "@material-tailwind/react";
+import { Link } from "react-router-dom";
+import CustomDropdown from "./components/CustomDropdown";
+import MenuCustomList from "./components/MenuCustomList";
 
 const menuItems = [
   {
-    name: 'Pacientes',
-    register: '/pacientes',
-    list: '/listar-pacientes',
+    name: "Pacientes",
+    options: [
+      {
+        name: "Registrar",
+        link: "/pacientes",
+      },
+      {
+        name: "Listar",
+        link: "/listar-pacientes",
+      },
+    ],
   },
   {
-    name: 'Odontologos',
-    register: '/odontologos',
-    list: '/listar-odontologos',
+    name: "Odontologos",
+    options: [
+      {
+        name: "Registrar",
+        link: "/odontologos",
+      },
+      {
+        name: "Listar",
+        link: "/listar-odontologos",
+      },
+    ],
   },
 ];
 
@@ -27,14 +44,18 @@ const NavbarItem = () => {
 
   useEffect(() => {
     window.addEventListener(
-      'resize',
+      "resize",
       () => window.innerWidth <= 960 && setOpenNav(false)
     );
   }, []);
 
   const renderList = () => {
     return menuItems.map((item) => (
-      <CustomDropdown key={`item-path-${item.name}`} name={item.name} register={item.register} list={item.list} />
+      <MenuCustomList
+        key={`item-path-${item.name}`}
+        name={item.name}
+        options={item.options}
+      />
     ));
   };
 
@@ -46,19 +67,19 @@ const NavbarItem = () => {
         color="blue-gray"
         className="flex items-center gap-x-2 p-1 font-medium "
       >
-        {' '}
-        <Link to={'/'} className="flex items-center">
+        {" "}
+        <Link to={"/"} className="flex items-center text-spacecadet">
           Home
         </Link>
       </Typography>
-     { renderList()}
+      {renderList()}
     </ul>
   );
 
   return (
     <Navbar className="bg-aliceblue mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-        <Link to={'/'} className="w-40">
+        <Link to={"/"} className="w-40">
           <Typography className="text-spacecadet text-xl font-extrabold">
             DENTAL<strong className="text-robineggblue font-bold">CARE</strong>
           </Typography>
@@ -67,11 +88,10 @@ const NavbarItem = () => {
         <div className="hidden lg:block w-1/2 max-w-[500px]  ">{navList}</div>
         <div className="flex items-center gap-x-1">
           <button
-            variant="gradient"
-            size="sm"
-            className="hidden lg:inline-block text-robineggblue bg-spacecadetlow px-3 py-1 rounded"
+            // size="sm"
+            className="hidden lg:inline-block text-robineggblue bg-gradient-to-r from-spacecadet to-spacecadetlow px-3 py-2 rounded-lg"
           >
-            <Link to={'/turnos'}>Saca Tu Turno</Link>
+            <Link to={"/turnos"}>Saca Tu Turno</Link>
           </button>
         </div>
         <IconButton
@@ -122,8 +142,8 @@ const NavbarItem = () => {
               size="sm"
               className="bg-spacecadetlow text-robineggblue"
             >
-              <Link to={'/turnos'}>
-                {' '}
+              <Link to={"/turnos"}>
+                {" "}
                 <span>Sacar turno!</span>
               </Link>
             </Button>

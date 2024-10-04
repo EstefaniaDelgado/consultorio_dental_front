@@ -6,6 +6,7 @@ import EditIcon from "../../../assets/edit-icon.svg";
 import UpdateDentist from "./UpdateDentist";
 import DeleteDentist from "./DeleteDentist";
 import Asistent from "@/assets/Asistent.png";
+import Spinner from "../../../components/Spinner";
 
 const ListDentists = () => {
   const [dentists, setDentists] = useState([]);
@@ -79,12 +80,7 @@ const ListDentists = () => {
 
       <section className="relative w-full my-8 mb-20 grid md:grid-cols-2 lg:grid-cols-3 gap-5 ">
         {isLoading ? (
-          /* From Uiverse.io by devAaus */
-          <div class="absolute inset-0 flex-col gap-4 w-full flex items-center justify-center">
-            <div class="w-14 h-14 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
-              <div class="w-12 h-12 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-spacecadet rounded-full"></div>
-            </div>
-          </div>
+          <Spinner />
         ) : !dentists.length ? (
           <p className="absolute inset-0 flex items-center justify-center text-center text-spacecadet text-xl lg:text-2xl">
             No hay registros aún!
