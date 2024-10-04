@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Card, Typography } from '@material-tailwind/react';
 import SearchPatient from './components/SearchPatient/SearchPatient';
 import SearchDentist from './components/SearchDentist/SearchDentist';
 import patientService from '../../services/patientService';
@@ -31,14 +30,14 @@ const Shift = () => {
   }, [optionSelected]);
 
   return (
-    <div className="w-full p-4 flex flex-col justify-center  items-center md:flex-row md:justify-center md:items-start gap-20">
-      <div className="relative w-full flex flex-col  items-center justify-center gap-3">
+    <div className="w-full p-4 flex flex-col justify-center  items-center gap-20 md:flex-row md:justify-center md:items-center md:gap-0 ">
+      <div className="relative flex flex-col flex-1  items-center justify-center gap-3">
         <SearchPatient onSearch={handleOnSearch} listPatients={listPatients} />
         <div className="absolute top-[70px] h-custom z-50">
           <FilterListPatient filterOptions={filterOptions} ref={refContainer} />
         </div>
       </div>
-      <div className=" w-full flex flex-col items-end justify-center">
+      <div className="flex flex-col flex-1 items-center justify-center">
         <SearchDentist />
       </div>
       <ToastContainer />
