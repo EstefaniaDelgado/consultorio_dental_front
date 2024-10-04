@@ -1,113 +1,48 @@
-import React from 'react'
-import { Card, Typography } from "@material-tailwind/react";
- 
-const TABLE_HEAD = ["Name", "Job", "Employed", ""];
- 
-const TABLE_ROWS = [
-  {
-    name: "John Michael",
-    job: "Manager",
-    date: "23/04/18",
-  },
-  {
-    name: "Alexa Liras",
-    job: "Developer",
-    date: "23/04/18",
-  },
-  {
-    name: "Laurent Perrier",
-    job: "Executive",
-    date: "19/09/17",
-  },
-  {
-    name: "Michael Levi",
-    job: "Developer",
-    date: "24/12/08",
-  },
-  {
-    name: "Richard Gran",
-    job: "Manager",
-    date: "04/10/21",
-  },
-];
- 
+import { useEffect, useRef, useState } from 'react';
+import SearchPatient from './components/SearchPatient/SearchPatient';
+import SearchDentist from './components/SearchDentist/SearchDentist';
+import patientService from '../../services/patientService';
+import FilterListPatient from './components/FilterListPatient/FilterListPatient';
+import useSearch from '../../Hooks/useSearch';
+import { ToastContainer} from 'react-toastify';
 
 const Shift = () => {
-    return (
-     
-        <Card className="h-full w-full overflow-scroll">
-          <table className="w-full min-w-max table-auto text-left">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th
-                    key={head}
-                    className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
-                  >
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal leading-none opacity-70"
-                    >
-                      {head}
-                    </Typography>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {TABLE_ROWS.map(({ name, job, date }, index) => {
-                const isLast = index === TABLE_ROWS.length - 1;
-                const classes = isLast ? "p-4" : "p-4 border-b border-blue-gray-50";
-     
-                return (
-                  <tr key={name}>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {name}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {job}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {date}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        as="a"
-                        href="#"
-                        variant="small"
-                        color="blue-gray"
-                        className="font-medium"
-                      >
-                        Edit
-                      </Typography>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </Card>
-        
-      );
-}
+  const [listPatients, setListPatients] = useState([]);
+  //usando el hook creado
+  const { handleOnSearch, filterOptions, optionSelected } = useSearch();
 
-export default Shift
+  const refContainer = useRef();
+
+  useEffect(() => {
+    const apiListPatients = async () => {
+      try {
+        const response = await patientService.getPatients();
+        setListPatients(response);
+      } catch (error) {
+        console.log('Ha ocurrido un error: ', error);
+      }
+    };
+    apiListPatients();
+  }, []);
+
+  useEffect(() => {
+    refContainer.current.setSelectedPatient('');
+  }, [optionSelected]);
+
+  return (
+    <div className="w-full p-4 flex flex-col justify-center  items-center gap-20 md:flex-row md:justify-center md:items-center md:gap-0 ">
+      <div className="relative flex flex-col flex-1  items-center justify-center gap-3">
+        <SearchPatient onSearch={handleOnSearch} listPatients={listPatients} />
+        <div className="absolute top-[70px] h-custom z-50">
+          <FilterListPatient filterOptions={filterOptions} ref={refContainer} />
+        </div>
+      </div>
+      <div className="flex flex-col flex-1 items-center justify-center">
+        <SearchDentist />
+      </div>
+      <ToastContainer />
+    </div>
+  );
+};
+
+export default Shift;
