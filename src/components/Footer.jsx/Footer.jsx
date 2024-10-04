@@ -16,7 +16,7 @@ const Footer = () => {
   ));
 
   return (
-    <footer className="bg-paleblue w-full flex justify-evenly gap-8 md:gap-0 flex-wrap pb-16 md:pb-20 pt-56 md:pt-44 relative mt-24">
+    <footer className="bg-paleblue w-full flex justify-evenly gap-8 lg:gap-0 px-4 flex-wrap pb-16 md:pb-20 pt-56 md:pt-44 relative mt-24">
       <Subscription />
       <article className="w-2/12 flex flex-col gap-3 basis-56">
         <h3 className="text-spacecadet font-black text-lg pb-2">

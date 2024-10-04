@@ -1,6 +1,8 @@
 const Subscription = () => {
   const infoPlaceholder =
-    window.innerWidth < 910
+    window.innerWidth < 500
+      ? "Introduce tu email"
+      : window.innerWidth < 910
       ? "Introduce tu correo electrónico"
       : "Introduce tu dirección de correo electrónico";
 
@@ -16,7 +18,7 @@ const Subscription = () => {
             placeholder={infoPlaceholder}
             className="p-4 mb-4 md:p-6 md:mb-0 w-full rounded-xl focus:outline-robineggblue placeholder:text-primary border border-robineggblue dark:border-spacecadetlow dark:focus:outline-none"
           />
-          <button className="block mx-auto md:absolute right-4 md:top-1/2 md:transform md:-translate-y-1/2 py-3 px-5 bg-robineggblue dark:bg-gradient-to-r from-spacecadet to-spacecadetlow text-white font-bold rounded-xl">
+          <button className="block mx-auto md:absolute right-4 md:top-1/2 md:transform md:-translate-y-1/2 py-3 px-5 bg-robineggblue md:dark:bg-gradient-to-r from-spacecadet to-spacecadetlow text-white font-bold rounded-xl">
             Suscribirse
           </button>
         </form>
