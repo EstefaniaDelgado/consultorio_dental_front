@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import dentistService from "../../../services/dentistService";
-import { Typography } from "@material-tailwind/react";
 import EditIcon from "../../../assets/edit-icon.svg";
 import UpdateDentist from "./UpdateDentist";
 import DeleteDentist from "./DeleteDentist";

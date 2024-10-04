@@ -7,7 +7,6 @@ import {
   Collapse,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
-import CustomDropdown from "./components/CustomDropdown";
 import MenuCustomList from "./components/MenuCustomList";
 
 const menuItems = [
