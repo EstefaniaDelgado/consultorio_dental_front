@@ -1,10 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import patientService from "@services/patientService";
+import { patientValidationFront } from "@utils/patientValidationFront";
+import { homeValidationFront } from "@utils/patientValidationFront";
+import { toast, ToastContainer } from "react-toastify";
+import { isButtonDisabled } from "../../../utils/patientValidationFront";
 const RegisterFormPatient = () => {
   const [patientInputs, setPatientInputs] = useState({
     nombre: "",
     apellido: "",
     dni: "",
     fechaIngreso: "",
+    domicilioEntradaDto: {},
   });
   const [homeInputs, setHomeInputs] = useState({
     calle: "",
@@ -12,25 +19,85 @@ const RegisterFormPatient = () => {
     localidad: "",
     provincia: "",
   });
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState({});
+  const navigate = useNavigate();
 
   const handleOnChangePatientInputs = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
     setPatientInputs({
       ...patientInputs,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    setError(
+      patientValidationFront({
+        ...patientInputs,
+        [name]: value,
+      })
+    );
   };
 
   const handleOnChangeHomeInputs = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
     setHomeInputs({
       ...homeInputs,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    setError(
+      homeValidationFront({
+        ...homeInputs,
+        [name]: value,
+      })
+    );
   };
 
-  const handleSubmitForm = (e) => {
+  const handleKeyDown = (event, inputValue) => {
+    if (event.key === "ArrowDown" && inputValue <= 0) {
+      event.preventDefault();
+    }
+  };
+
+  const handleSubmitForm = async (e) => {
     e.preventDefault();
+
+    patientInputs.domicilioEntradaDto = homeInputs;
+
+    const response = await patientService.postPatient(patientInputs);
+
+    if (response.status) {
+      setError(response);
+    } else if (!response.status) {
+      setPatientInputs({
+        nombre: "",
+        apellido: "",
+        dni: "",
+        fechaIngreso: "",
+        domicilioEntradaDto: {},
+      });
+      setHomeInputs({
+        calle: "",
+        numero: "",
+        localidad: "",
+        provincia: "",
+      });
+      toast("Paciente registrado exitosamente!", {
+        position: "top-right",
+        type: "success",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+        setTimeout(() => {
+          navigate("/listar-pacientes");
+        }, 2000);
+    }
   };
 
   return (
@@ -53,59 +120,72 @@ const RegisterFormPatient = () => {
         <h2 className="text-robineggblue font-semibold text-lg">
           Datos Personales
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-2">
+          <div className="relative">
             <label>
               Nombre
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none"
+                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="nombre"
                 value={patientInputs.nombre}
                 placeholder="Juan"
               />
             </label>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.nombre ? error.nombre : null}
+            </span>
           </div>
-          <div>
+          <div className="relative">
             <label>
               Apellido
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none"
+                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="apellido"
                 value={patientInputs.apellido}
                 placeholder="Perez"
               />
             </label>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.apellido ? error.apellido : null}
+            </span>
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-          <div>
+          <div className="relative">
             <label>
               DNI
               <input
-                type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none"
+                type="number"
+                className="no-spin w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="dni"
                 value={patientInputs.dni}
+                onKeyDown={(e) => handleKeyDown(e, patientInputs.dni)}
                 placeholder="12345678"
               />
             </label>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.dni ? error.dni : null}
+            </span>
           </div>
-          <div>
+          <div className="relative">
             <label>
               Fecha de ingreso
               <input
-                type="datetime-local"
+                type="date"
                 className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="fechaIngreso"
                 value={patientInputs.fechaIngreso}
               />
             </label>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.fechaIngreso ? error.fechaIngreso : null}
+            </span>
           </div>
         </div>
 
@@ -114,65 +194,83 @@ const RegisterFormPatient = () => {
           Datos de Domicilio
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-          <div>
+          <div className="relative">
             <label>
               Calle
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none"
+                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
                 onChange={handleOnChangeHomeInputs}
                 name="calle"
                 value={homeInputs.calle}
                 placeholder="Calle Nueva"
               />
             </label>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.calle ? error.calle : null}
+            </span>
           </div>
-          <div>
+          <div className="relative">
             <label>
               Localidad
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none"
+                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
                 onChange={handleOnChangeHomeInputs}
                 name="localidad"
                 value={homeInputs.localidad}
                 placeholder="Central"
               />
             </label>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.localidad ? error.localidad : null}
+            </span>
           </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-          <div>
+          <div className="relative">
             <label>
               Número
               <input
-                type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none"
+                type="number"
+                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black no-spin"
                 onChange={handleOnChangeHomeInputs}
                 name="numero"
                 value={homeInputs.numero}
                 placeholder="1234"
+                onKeyDown={(e) => handleKeyDown(e, homeInputs.numero)}
               />
             </label>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.numero ? error.numero : null}
+            </span>
           </div>
-          <div>
+          <div className="relative">
             <label>
               Provincia
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none"
+                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
                 onChange={handleOnChangeHomeInputs}
                 name="provincia"
                 value={homeInputs.provincia}
                 placeholder="Bogotá"
               />
             </label>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.provincia ? error.provincia : null}
+            </span>
           </div>
         </div>
-        <button className="bg-robineggblue p-3 rounded-lg text-white w-1/2 mx-auto m-2 min-w-48">
+        <button
+          disabled={isButtonDisabled(error, patientInputs, homeInputs)}
+          type="submit"
+          className="bg-robineggblue p-3 rounded-lg text-white w-1/2 mx-auto m-2 min-w-48"
+        >
           Enviar
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
