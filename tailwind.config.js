@@ -5,6 +5,9 @@ module.exports = withMT({
   darkMode: "media",
   theme: {
     extend: {
+      spacing: {
+        'custom': 'calc(100% - 4rem)',
+      },
       colors: {
         primary: "#000000BD",
         royalblue: "#7383c1",
