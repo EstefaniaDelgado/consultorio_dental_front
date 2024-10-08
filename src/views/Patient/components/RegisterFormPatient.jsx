@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import patientService from "@services/patientService";
-import { patientValidationFront } from "@utils/patientValidationFront";
+import {
+  isButtonDisabled,
+  patientValidationFront,
+} from "@utils/patientValidationFront";
 import { homeValidationFront } from "@utils/patientValidationFront";
 import { toast, ToastContainer } from "react-toastify";
-import { isButtonDisabled } from "../../../utils/patientValidationFront";
+
 const RegisterFormPatient = () => {
   const [patientInputs, setPatientInputs] = useState({
     nombre: "",
@@ -94,9 +97,9 @@ const RegisterFormPatient = () => {
         progress: undefined,
         theme: "light",
       });
-        setTimeout(() => {
-          navigate("/listar-pacientes");
-        }, 2000);
+      setTimeout(() => {
+        navigate("/listar-pacientes");
+      }, 2000);
     }
   };
 
@@ -120,7 +123,7 @@ const RegisterFormPatient = () => {
         <h2 className="text-robineggblue font-semibold text-lg">
           Datos Personales
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mb-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2">
           <div className="relative">
             <label>
               Nombre
@@ -154,7 +157,7 @@ const RegisterFormPatient = () => {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="relative">
             <label>
               DNI
@@ -193,7 +196,7 @@ const RegisterFormPatient = () => {
         <h2 className="mt-2 text-robineggblue font-semibold text-lg">
           Datos de Domicilio
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2">
           <div className="relative">
             <label>
               Calle
@@ -227,7 +230,7 @@ const RegisterFormPatient = () => {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2">
           <div className="relative">
             <label>
               Número
@@ -265,7 +268,7 @@ const RegisterFormPatient = () => {
         <button
           disabled={isButtonDisabled(error, patientInputs, homeInputs)}
           type="submit"
-          className="bg-robineggblue p-3 rounded-lg text-white w-1/2 mx-auto m-2 min-w-48"
+          className="bg-robineggblue p-3 rounded-lg text-white w-1/2 mx-auto mt-4 min-w-48"
         >
           Enviar
         </button>
