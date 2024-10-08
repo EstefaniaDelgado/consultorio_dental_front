@@ -27,7 +27,7 @@ const SearchPatient = ({ onSearch, listPatients }) => {
   };
 
   return (
-    <div /* className="w-full max-w-[24rem]" */>
+    <div>
       <Typography variant="small" className="mb-1 text-spacecadet font-bold">
         OPCIONES DE BÚSQUEDA
       </Typography>
