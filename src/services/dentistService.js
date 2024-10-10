@@ -6,6 +6,7 @@ const dentistService = {
     try {
       const response = await apiDentist.post('/registrar', data);
       return response.data;
+      
     } catch (error) {
       if (error.status >= 400 && error.status < 500) {
         const errors = dentistValidationBackend(

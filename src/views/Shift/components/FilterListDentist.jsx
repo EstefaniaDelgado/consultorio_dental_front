@@ -7,7 +7,6 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 
-
 function CheckIcon() {
   return (
     <svg
@@ -28,31 +27,30 @@ function CheckIcon() {
   );
 }
 
-const FilterListPatient = forwardRef(({ filterOptions }, ref) => {
-  const [selectedPatient, setSelectedPatient] = useState({});
-
-  const handleSelectedOption = (patient) => {
-    setSelectedPatient(patient);
-  };
+const FilterListDentist = forwardRef(({ filterOptions, selectedDentist, setSelectedDentist }, ref) => {
+ 
 
   useImperativeHandle(ref, () => ({
-    setSelectedPatient,
+    setSelectedDentist,
   }));
 
+  const handleSelectedOption = (dentist) => {
+    setSelectedDentist(dentist);
+  };
+
   const renderListOptions = () => {
-   
-    return filterOptions.map((patient) => {
+    return filterOptions.map((dentist) => {
       return (
-        <List key={`patient-id-${patient.id}`}>
+        <List key={`dentist-id-${dentist.id}`}>
           <ListItem
             ripple={false}
             className="py-1 pr-1 pl-4"
-            onClick={() => handleSelectedOption(patient)}
+            onClick={() => handleSelectedOption(dentist)}
           >
-            {patient.nombre} {patient.apellido} {patient.dni}
+            {dentist.nombre} {dentist.apellido} {dentist.matricula}
             <ListItemSuffix>
-              {Object.keys(selectedPatient).length &&
-              selectedPatient.id === patient.id ? (
+              {Object.keys(selectedDentist).length &&
+              selectedDentist.id === dentist.id ? (
                 <IconButton variant="text" color="blue-gray">
                   <CheckIcon />
                 </IconButton>
@@ -70,11 +68,11 @@ const FilterListPatient = forwardRef(({ filterOptions }, ref) => {
         !filterOptions.length ? 'boder-none' : 'border-robineggblue border-2'
       } `}
     >
-      {Object.keys(selectedPatient).length ? (
-        <List key={`patient-id-${selectedPatient.id}`}>
+      {Object.keys(selectedDentist).length ? (
+        <List key={`dentist-id-${selectedDentist.id}`}>
           <ListItem ripple={false} className="py-0 pr-1 pl-4 bg-blue-100">
-            {selectedPatient.nombre} {selectedPatient.apellido}{' '}
-            {selectedPatient.dni}
+            {selectedDentist.nombre} {selectedDentist.apellido}{' '}
+            {selectedDentist.matricula}
             <ListItemSuffix>
               <IconButton variant="text" color="blue-gray">
                 <CheckIcon />
@@ -89,4 +87,4 @@ const FilterListPatient = forwardRef(({ filterOptions }, ref) => {
   );
 });
 
-export default FilterListPatient;
+export default FilterListDentist;

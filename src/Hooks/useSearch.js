@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SearchDentist from '../views/Shift/components/SearchDentist/SearchDentist';
+import SearchDentist from '../views/Shift/components/SearchDentist';
 
 const useSearch = () => {
   //estados para guardar el resultado del filtro
@@ -36,10 +36,10 @@ const useSearch = () => {
     }
     if (type === 'dentist') {
       setFilterDentists(filter);
-      setSearchDentist(searchTerm)
+      setSearchDentist(searchTerm);
     } else {
       setFilterPatients(filter);
-      setSearchPatient(searchTerm)
+      setSearchPatient(searchTerm);
     }
   };
 
@@ -48,7 +48,7 @@ const useSearch = () => {
     filterPatients,
     filterDentists,
     searchPatient,
-    searchDentist
+    searchDentist,
   };
 };
 
