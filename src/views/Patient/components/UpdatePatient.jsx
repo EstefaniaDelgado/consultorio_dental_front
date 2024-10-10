@@ -324,7 +324,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
         </div>
         <div className="flex flex-col sm:flex-row sm:gap-4">
           <Button
-            className="bg-spacecadet py-4 rounded-lg text-white w-full mt-3"
+            className="bg-gradient-to-r from-spacecadetlow to-spacecadet py-4 rounded-lg text-white w-full mt-3"
             onClick={() => handleCancelClick()}
           >
             Cancelar

@@ -8,10 +8,8 @@ const patientService = {
   postPatient: async (data) => {
     try {
       const response = await apiPatients.post("/registrar", data);
-      console.log("RESPONSE BACKEND: ", response);
       return response.data;
     } catch (error) {
-      console.log("ERROR RESPONSE: ", error.response)
       if (error.status >= 400 && error.status < 500) {
         let errors = backendValidationPatient(
           error.response.data,
@@ -63,7 +61,7 @@ const patientService = {
 
   deletePatient: async (id) => {
     try {
-      const response = await apiPatients.delete(`/eliminar/${id}`);
+      const response = await apiPatients.delete(`/eliminar?id=${id}`);
       return response.data;
     } catch (error) {
       console.log("Error al eliminar paciente", error);

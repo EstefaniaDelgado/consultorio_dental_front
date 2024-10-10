@@ -5,6 +5,7 @@ import EditIcon from "@/assets/edit-icon.svg";
 import DeleteIcon from "@/assets/delete-icon.svg";
 import Spinner from "@/components/Spinner";
 import UpdatePatient from "./UpdatePatient";
+import DeletePatient from "./DeletePatient";
 
 const customers = [
   "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
@@ -107,19 +108,13 @@ const ListPatients = () => {
                   <div className="flex gap-2">
                     <figure>
                       <img
-                        className="cursor-pointer w-5 h-5"
+                        className="cursor-pointer w-5 h-5 hover:scale-110 transition-all duration-300 delay-200"
                         onClick={() => handleOpen(patient)}
                         src={EditIcon}
                         alt="Editar"
                       />
                     </figure>
-                    <figure>
-                      <img
-                        className="cursor-pointer w-5 h-5"
-                        src={DeleteIcon}
-                        alt="Eliminar"
-                      />
-                    </figure>
+                    <DeletePatient id={patient.id} setPatients={setPatients} />
                   </div>
                 </div>
               </div>
