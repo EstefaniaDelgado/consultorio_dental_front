@@ -4,7 +4,7 @@ import patientService from "@services/patientService";
 import EditIcon from "@/assets/edit-icon.svg";
 import DeleteIcon from "@/assets/delete-icon.svg";
 import Spinner from "@/components/Spinner";
-console.log(Spinner);
+// console.log(Spinner);
 
 const customers = [
   "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
