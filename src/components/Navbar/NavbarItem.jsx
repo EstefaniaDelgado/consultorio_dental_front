@@ -8,6 +8,7 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import MenuCustomList from "./components/MenuCustomList";
+import ThemeSwitcher from "./components/ThemeSwitcher";
 
 const menuItems = [
   {
@@ -86,6 +87,7 @@ const NavbarItem = () => {
         </Link>
 
         <div className="hidden lg:block w-1/2 max-w-[500px]  ">{navList}</div>
+        <ThemeSwitcher />
         <div className="flex items-center gap-x-1">
           <button className="hidden lg:inline-block text-robineggblue bg-gradient-to-r from-spacecadet to-spacecadetlow px-3 py-2 rounded-xl">
             <Link to={"/turnos"}>Saca Tu Turno</Link>
