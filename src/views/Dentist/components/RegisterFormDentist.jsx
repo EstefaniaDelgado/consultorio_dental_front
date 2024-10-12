@@ -64,7 +64,7 @@ const RegisterFormDentist = () => {
       {/* Form */}
       <form
         onSubmit={handleSubmitForm}
-        className="flex flex-col gap-2 max-w-[350px] bg-white p-5 rounded-2xl relative shadow-2xl border border-robineggblue  "
+        className="flex flex-col gap-2 max-w-[350px]  bg-white dark:bg-gradient-to-r from-spacecadet to-spacecadetlow dark:text-white p-5 rounded-2xl relative shadow-2xl border border-robineggblue  "
       >
         <p className="text-[28px] text-robineggblue font-semibold tracking-tighter relative flex items-center pl-8">
           Registrar Odontologo
