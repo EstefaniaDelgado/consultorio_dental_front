@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { CardBody, Typography, Avatar } from "@material-tailwind/react";
 import patientService from "@services/patientService";
 import EditIcon from "@/assets/edit-icon.svg";
-import DeleteIcon from "@/assets/delete-icon.svg";
 import Spinner from "@/components/Spinner";
 import UpdatePatient from "./UpdatePatient";
 import DeletePatient from "./DeletePatient";
@@ -69,8 +68,8 @@ const ListPatients = () => {
             <div className="relative p-8">
               <Spinner />
             </div>
-          ) : !patients.length ? (
-            <p className="text-center text-spacecadet text-xl lg:text-2xl">
+          ) : !patients || patients.length === 0 ? (
+            <p className="text-center text-spacecadet text-lg lg:text-2xl">
               No hay registros aún!
             </p>
           ) : (

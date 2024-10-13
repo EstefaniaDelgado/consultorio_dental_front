@@ -13,6 +13,7 @@ const RegisterFormPatient = () => {
     nombre: "",
     apellido: "",
     dni: "",
+    genero: "",
     fechaIngreso: "",
     domicilioEntradaDto: {},
   });
@@ -77,6 +78,7 @@ const RegisterFormPatient = () => {
         nombre: "",
         apellido: "",
         dni: "",
+        genero: "",
         fechaIngreso: "",
         domicilioEntradaDto: {},
       });
@@ -129,7 +131,7 @@ const RegisterFormPatient = () => {
               Nombre
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="nombre"
                 value={patientInputs.nombre}
@@ -145,7 +147,7 @@ const RegisterFormPatient = () => {
               Apellido
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="apellido"
                 value={patientInputs.apellido}
@@ -157,13 +159,13 @@ const RegisterFormPatient = () => {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2">
           <div className="relative">
             <label>
               DNI
               <input
                 type="number"
-                className="no-spin w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="no-spin w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="dni"
                 value={patientInputs.dni}
@@ -180,7 +182,7 @@ const RegisterFormPatient = () => {
               Fecha de ingreso
               <input
                 type="date"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="fechaIngreso"
                 value={patientInputs.fechaIngreso}
@@ -188,6 +190,36 @@ const RegisterFormPatient = () => {
             </label>
             <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
               {error.fechaIngreso ? error.fechaIngreso : null}
+            </span>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="relative">
+            <fieldset className="flex justify-around border border-robineggblue p-2 rounded-md">
+              <legend>Selecciona el género:</legend>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="masculino"
+                  name="genero"
+                  value="MASCULINO"
+                  onChange={handleOnChangePatientInputs}
+                />
+                <label htmlFor="masculino">Masculino</label>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="femenino"
+                  name="genero"
+                  value="FEMENINO"
+                  onChange={handleOnChangePatientInputs}
+                />
+                <label htmlFor="femenino">Femenino</label>
+              </div>
+            </fieldset>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.genero ? error.genero : null}
             </span>
           </div>
         </div>
@@ -202,7 +234,7 @@ const RegisterFormPatient = () => {
               Calle
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangeHomeInputs}
                 name="calle"
                 value={homeInputs.calle}
@@ -218,7 +250,7 @@ const RegisterFormPatient = () => {
               Localidad
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangeHomeInputs}
                 name="localidad"
                 value={homeInputs.localidad}
@@ -236,7 +268,7 @@ const RegisterFormPatient = () => {
               Número
               <input
                 type="number"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black no-spin"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black no-spin"
                 onChange={handleOnChangeHomeInputs}
                 name="numero"
                 value={homeInputs.numero}
@@ -253,7 +285,7 @@ const RegisterFormPatient = () => {
               Provincia
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangeHomeInputs}
                 name="provincia"
                 value={homeInputs.provincia}

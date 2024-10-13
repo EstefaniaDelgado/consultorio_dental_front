@@ -14,6 +14,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
     nombre: "",
     apellido: "",
     dni: "",
+    genero: "",
     fechaIngreso: "",
   });
   const [homeInputs, setHomeInputs] = useState({
@@ -30,6 +31,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
         nombre: patient.nombre || "",
         apellido: patient.apellido || "",
         dni: patient.dni || "",
+        genero: patient.genero || "",
         fechaIngreso: patient.fechaIngreso || "",
       });
       setHomeInputs({
@@ -147,7 +149,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
     <Dialog
       open={isOpen}
       handler={handleOpen}
-      className="rounded-2xl overflow-y-scroll h-4/5 lg:h-auto lg:overflow-hidden form-container"
+      className="rounded-2xl overflow-y-scroll h-4/5 lg:h-auto form-container max-h-[95%] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-100"
     >
       <form
         className="relative flex flex-col gap-4 shadow-xl p-8 rounded-2xl bg-white dark:bg-gradient-to-r from-spacecadet to-spacecadetlow dark:text-white border border-robineggblue dark:border-none w-full"
@@ -180,13 +182,13 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
         <h2 className="text-robineggblue font-semibold text-lg">
           Datos Personales
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2 text-black dark:text-white">
           <div className="relative">
             <label>
               Nombre
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="nombre"
                 value={patientInputs.nombre}
@@ -202,7 +204,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
               Apellido
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="apellido"
                 value={patientInputs.apellido}
@@ -214,13 +216,13 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-black dark:text-white">
           <div className="relative">
             <label>
               DNI
               <input
                 type="number"
-                className="no-spin w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="no-spin w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="dni"
                 value={patientInputs.dni}
@@ -237,7 +239,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
               Fecha de ingreso
               <input
                 type="date"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangePatientInputs}
                 name="fechaIngreso"
                 value={patientInputs.fechaIngreso}
@@ -248,18 +250,50 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
             </span>
           </div>
         </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-black dark:text-white">
+          <div className="relative">
+            <fieldset className="flex justify-around border border-robineggblue p-2 rounded-md">
+              <legend>Selecciona el género:</legend>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="masculino"
+                  name="genero"
+                  checked={patientInputs.genero === "MASCULINO"}
+                  value="MASCULINO"
+                  onChange={handleOnChangePatientInputs}
+                />
+                <label htmlFor="masculino">Masculino</label>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="femenino"
+                  name="genero"
+                  checked={patientInputs.genero === "FEMENINO"}
+                  value="FEMENINO"
+                  onChange={handleOnChangePatientInputs}
+                />
+                <label htmlFor="femenino">Femenino</label>
+              </div>
+            </fieldset>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.genero ? error.genero : null}
+            </span>
+          </div>
+        </div>
 
         {/* Datos de domicilio del paciente */}
         <h2 className="mt-2 text-robineggblue font-semibold text-lg">
           Datos de Domicilio
         </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2 text-black dark:text-white">
           <div className="relative">
             <label>
               Calle
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangeHomeInputs}
                 name="calle"
                 value={homeInputs.calle}
@@ -275,7 +309,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
               Localidad
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangeHomeInputs}
                 name="localidad"
                 value={homeInputs.localidad}
@@ -287,13 +321,13 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2 text-black dark:text-white">
           <div className="relative">
             <label>
               Número
               <input
                 type="number"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black no-spin"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black no-spin"
                 onChange={handleOnChangeHomeInputs}
                 name="numero"
                 value={homeInputs.numero}
@@ -310,7 +344,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
               Provincia
               <input
                 type="text"
-                className="w-full p-3 border border-gray-300 rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
                 onChange={handleOnChangeHomeInputs}
                 name="provincia"
                 value={homeInputs.provincia}

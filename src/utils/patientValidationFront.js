@@ -1,9 +1,10 @@
-export const patientValidationFront = ({ nombre, apellido, dni }) => {
+export const patientValidationFront = ({ nombre, apellido, dni, genero }) => {
   const errors = {};
 
   if (!nombre) errors.nombre = "El nombre es requerido";
   if (!apellido) errors.apellido = "El apellido es requerido";
   if (!dni) errors.dni = "El dni es requerido";
+  if (!genero) errors.genero = "El genero es requerido";
 
   return errors;
 };
