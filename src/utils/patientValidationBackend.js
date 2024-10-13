@@ -1,5 +1,5 @@
 export const backendValidationPatient = (
-  { nombre, apellido, dni, fechaIngreso, mensaje },
+  { nombre, apellido, dni, genero, fechaIngreso, mensaje },
   status
 ) => {
   const errors = {};
@@ -16,6 +16,9 @@ export const backendValidationPatient = (
   }
   if (mensaje?.length) {
     errors.dni = mensajeError;
+  }
+  if (genero?.length) {
+    errors.genero = genero;
   }
   if (fechaIngreso?.length) {
     errors.fechaIngreso = fechaIngreso;

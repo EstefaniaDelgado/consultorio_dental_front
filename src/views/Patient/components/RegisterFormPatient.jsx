@@ -13,6 +13,7 @@ const RegisterFormPatient = () => {
     nombre: "",
     apellido: "",
     dni: "",
+    genero: "",
     fechaIngreso: "",
     domicilioEntradaDto: {},
   });
@@ -77,6 +78,7 @@ const RegisterFormPatient = () => {
         nombre: "",
         apellido: "",
         dni: "",
+        genero: "",
         fechaIngreso: "",
         domicilioEntradaDto: {},
       });
@@ -157,7 +159,7 @@ const RegisterFormPatient = () => {
             </span>
           </div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-2">
           <div className="relative">
             <label>
               DNI
@@ -188,6 +190,36 @@ const RegisterFormPatient = () => {
             </label>
             <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
               {error.fechaIngreso ? error.fechaIngreso : null}
+            </span>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="relative">
+            <fieldset className="flex justify-around border border-robineggblue p-2 rounded-md">
+              <legend>Selecciona el género:</legend>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="masculino"
+                  name="genero"
+                  value="MASCULINO"
+                  onChange={handleOnChangePatientInputs}
+                />
+                <label htmlFor="masculino">Masculino</label>
+              </div>
+              <div className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  id="femenino"
+                  name="genero"
+                  value="FEMENINO"
+                  onChange={handleOnChangePatientInputs}
+                />
+                <label htmlFor="femenino">Femenino</label>
+              </div>
+            </fieldset>
+            <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
+              {error.genero ? error.genero : null}
             </span>
           </div>
         </div>

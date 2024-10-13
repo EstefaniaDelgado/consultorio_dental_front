@@ -36,5 +36,6 @@ module.exports = withMT({
         },
       });
     },
+    require("tailwind-scrollbar"),
   ],
 });
