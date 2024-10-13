@@ -13,6 +13,7 @@ const DeleteShift = ({ id, setListShifts }) => {
         confirmButtonColor: "#01CFC9",
         cancelButtonColor: "#0F2650",
         confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "Cancelar",
       }).then(async (result) => {
         if (result.isConfirmed) {
           const response = await shiftService.deleteShift(id);

@@ -59,25 +59,36 @@ const ListShifts = () => {
   }
 
   return (
-    <Card className="h-full w-full">
-      <CardHeader floated={false} shadow={false} className="rounded-none">
-        <div className="mb-8 flex items-center justify-between gap-8">
+    <Card className="h-full w-full dark:bg-gradient-to-r from-spacecadet to-spacecadetlow ">
+      <CardHeader
+        floated={false}
+        shadow={false}
+        className="rounded-none dark:bg-gradient-to-r from-spacecadet to-spacecadetlow "
+      >
+        <div className="mb-8 flex items-center justify-between gap-8 ">
           <div>
             <h2 className="text-robineggblue font-extrabold">Registros</h2>
             <Typography
               variant="h5"
               color="blue-gray"
-              className="text-spacecadet"
+              className="text-spacecadet dark:text-white"
             >
               Lista de Registros de Turnos
             </Typography>
 
-            <Typography color="gray" className="mt-1 font-normal">
+            <Typography
+              color="gray"
+              className="mt-1 font-normal dark:text-white"
+            >
               Mira más información acerca de todos los turnos
             </Typography>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <Button variant="outlined" size="sm">
+            <Button
+              variant="outlined"
+              size="sm"
+              className="dark:text-white dark:border-white"
+            >
               Ver todos
             </Button>
           </div>
@@ -86,13 +97,14 @@ const ListShifts = () => {
           <div className="w-full md:w-72">
             <Input
               label="Busca fecha"
-              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+              icon={<MagnifyingGlassIcon className="h-5 w-5 " />}
+              className="dark:bg-white"
             />
           </div>
         </div>
       </CardHeader>
       <CardBody className="overflow-scroll lg:overflow-hidden px-0">
-        <table className="mt-4 w-full min-w-max table-auto text-left">
+        <table className="mt-4 w-full min-w-max table-auto text-left ">
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (
@@ -103,7 +115,7 @@ const ListShifts = () => {
                   <Typography
                     variant="small"
                     color="blue-gray"
-                    className="font-normal leading-none opacity-70"
+                    className="font-normal leading-none opacity-70 dark:text-white"
                   >
                     {head}
                   </Typography>
@@ -125,7 +137,7 @@ const ListShifts = () => {
                 return (
                   <tr key={id}>
                     <td className={classes}>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 ">
                         <Avatar
                           src={
                             "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
@@ -137,7 +149,7 @@ const ListShifts = () => {
                           <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal"
+                            className="font-normal dark:text-white"
                           >
                             {odontologoSalidaDto?.nombre}{" "}
                             {odontologoSalidaDto?.apellido}
@@ -145,7 +157,7 @@ const ListShifts = () => {
                           <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal opacity-70"
+                            className="font-normal opacity-70 dark:text-white"
                           >
                             {odontologoSalidaDto?.matricula}
                           </Typography>
@@ -153,22 +165,31 @@ const ListShifts = () => {
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className="flex flex-col">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {pacienteSalidaDto?.nombre}{" "}
-                          {pacienteSalidaDto?.apellido}
-                        </Typography>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal opacity-70"
-                        >
-                          {pacienteSalidaDto?.dni}
-                        </Typography>
+                      <div className="flex items-center gap-3 ">
+                        <Avatar
+                          src={
+                            "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
+                          }
+                          alt={id}
+                          size="sm"
+                        />
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal dark:text-white"
+                          >
+                            {pacienteSalidaDto?.nombre}{" "}
+                            {pacienteSalidaDto?.apellido}
+                          </Typography>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal opacity-70 dark:text-white"
+                          >
+                            {pacienteSalidaDto?.dni}
+                          </Typography>
+                        </div>
                       </div>
                     </td>
                     {/* <td className={classes}>
@@ -188,6 +209,7 @@ const ListShifts = () => {
                           size="sm"
                           value={fechaHora.replace("T", " ")}
                           color={"blue-gray"}
+                          className="dark:text-white"
                         />
                       </div>
                     </td>
@@ -238,13 +260,18 @@ const ListShifts = () => {
         </table>
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-        <Typography variant="small" color="blue-gray" className="font-normal">
+        <Typography
+          variant="small"
+          color="blue-gray"
+          className="font-normal dark:text-white"
+        >
           Páginas {currentPage} de {Math.ceil(listShifts.length / itemsPerPage)}
         </Typography>
         <div className="flex gap-2">
           <Button
             variant="outlined"
             size="sm"
+            className=" dark:text-white dark:border-white"
             onClick={() => setCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -257,6 +284,7 @@ const ListShifts = () => {
             disabled={
               currentPage === Math.ceil(listShifts.length / itemsPerPage)
             }
+            className="dark:text-white dark:border-white"
           >
             Siguientes
           </Button>
