@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import shiftService from '../../../services/shiftService';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import shiftService from "../../../services/shiftService";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import {
   Card,
   CardHeader,
@@ -10,29 +9,38 @@ import {
   CardBody,
   Chip,
   CardFooter,
-  Tabs,
-  TabsHeader,
-  Tab,
   Avatar,
   IconButton,
   Tooltip,
-} from '@material-tailwind/react';
-import Edit from '../../../assets/edit.svg';
+} from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
+import DeleteShift from "./DeleteShift";
+import { useEffect, useState } from "react";
 
-
-const TABLE_HEAD = ['Odontologo', 'Paciente', 'Fecha y Hora', 'Acciones'];
-
+const TABLE_HEAD = ["Odontologo", "Paciente", "Fecha y Hora", "Acciones"];
 
 const ListShifts = () => {
   const [listShifts, setListShifts] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
-const [currentPage, setCurrentPage] = useState(1); 
-const [itemsPerPage] = useState(5); 
-const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
 
+  const navigate = useNavigate();
+
+  const handleUpdateShift = (
+    currentPatient,
+    currentDentist,
+    currentFechaHora,
+    shiftId
+  ) => {
+    navigate(`/actualizar-turno/${shiftId}`, {
+      state: { currentPatient, currentDentist, currentFechaHora },
+    });
+  };
 
   useEffect(() => {
     const fetchShifts = async () => {
@@ -55,11 +63,15 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
       <CardHeader floated={false} shadow={false} className="rounded-none">
         <div className="mb-8 flex items-center justify-between gap-8">
           <div>
-          <h2 className="text-robineggblue font-extrabold">Registros</h2>
-            <Typography variant="h5" color="blue-gray" className='text-spacecadet' >
-            Lista de Registros de Turnos
+            <h2 className="text-robineggblue font-extrabold">Registros</h2>
+            <Typography
+              variant="h5"
+              color="blue-gray"
+              className="text-spacecadet"
+            >
+              Lista de Registros de Turnos
             </Typography>
-           
+
             <Typography color="gray" className="mt-1 font-normal">
               Mira más información acerca de todos los turnos
             </Typography>
@@ -107,8 +119,8 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
               ) => {
                 const isLast = index === currentShifts.length - 1;
                 const classes = isLast
-                  ? 'p-4'
-                  : 'p-4 border-b border-blue-gray-50';
+                  ? "p-4"
+                  : "p-4 border-b border-blue-gray-50";
 
                 return (
                   <tr key={id}>
@@ -116,7 +128,7 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                       <div className="flex items-center gap-3">
                         <Avatar
                           src={
-                            'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg'
+                            "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
                           }
                           alt={id}
                           size="sm"
@@ -127,7 +139,7 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {odontologoSalidaDto?.nombre}{' '}
+                            {odontologoSalidaDto?.nombre}{" "}
                             {odontologoSalidaDto?.apellido}
                           </Typography>
                           <Typography
@@ -147,7 +159,7 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                           color="blue-gray"
                           className="font-normal"
                         >
-                          {pacienteSalidaDto?.nombre}{' '}
+                          {pacienteSalidaDto?.nombre}{" "}
                           {pacienteSalidaDto?.apellido}
                         </Typography>
                         <Typography
@@ -174,14 +186,24 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                         <Chip
                           variant="ghost"
                           size="sm"
-                          value={fechaHora.replace('T', ' ')}
-                          color={'blue-gray'}
+                          value={fechaHora.replace("T", " ")}
+                          color={"blue-gray"}
                         />
                       </div>
                     </td>
                     <td className={classes}>
                       <Tooltip content="Editar" className="bg-white text-black">
-                        <IconButton variant="text">
+                        <IconButton
+                          variant="text"
+                          onClick={() =>
+                            handleUpdateShift(
+                              pacienteSalidaDto,
+                              odontologoSalidaDto,
+                              fechaHora.replace("T", " "),
+                              id
+                            )
+                          }
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="1.5rem"
@@ -206,11 +228,7 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                           </svg>
                         </IconButton>
                       </Tooltip>
-                      <Tooltip content="Eliminar" className="bg-white text-black">
-                        <IconButton variant="text">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 48 48"><g fill="none" strokeLinejoin="round" strokeWidth={4}><path fill="#01CFC9" stroke="#000" d="M9 10V44H39V10H9Z"></path><path stroke="#fff" strokeLinecap="round" d="M20 20V33"></path><path stroke="#fff" strokeLinecap="round" d="M28 20V33"></path><path stroke="#000" strokeLinecap="round" d="M4 10H44"></path><path fill="#01CFC9" stroke="#000" d="M16 10L19.289 4H28.7771L32 10H16Z"></path></g></svg>
-                        </IconButton>
-                      </Tooltip>
+                      <DeleteShift id={id} setListShifts={setListShifts} />
                     </td>
                   </tr>
                 );
@@ -220,29 +238,30 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
         </table>
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-  <Typography variant="small" color="blue-gray" className="font-normal">
-    Páginas {currentPage} de {Math.ceil(listShifts.length / itemsPerPage)}
-  </Typography>
-  <div className="flex gap-2">
-    <Button
-      variant="outlined"
-      size="sm"
-      onClick={() => setCurrentPage(currentPage - 1)}
-      disabled={currentPage === 1}
-    >
-      Previos
-    </Button>
-    <Button
-      variant="outlined"
-      size="sm"
-      onClick={() => setCurrentPage(currentPage + 1)}
-      disabled={currentPage === Math.ceil(listShifts.length / itemsPerPage)}
-    >
-      Siguientes
-    </Button>
-  </div>
-</CardFooter>
-
+        <Typography variant="small" color="blue-gray" className="font-normal">
+          Páginas {currentPage} de {Math.ceil(listShifts.length / itemsPerPage)}
+        </Typography>
+        <div className="flex gap-2">
+          <Button
+            variant="outlined"
+            size="sm"
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previos
+          </Button>
+          <Button
+            variant="outlined"
+            size="sm"
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={
+              currentPage === Math.ceil(listShifts.length / itemsPerPage)
+            }
+          >
+            Siguientes
+          </Button>
+        </div>
+      </CardFooter>
     </Card>
   );
 };
