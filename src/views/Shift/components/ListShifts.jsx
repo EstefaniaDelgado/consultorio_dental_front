@@ -19,20 +19,17 @@ import {
 } from '@material-tailwind/react';
 import Edit from '../../../assets/edit.svg';
 
-
 const TABLE_HEAD = ['Odontologo', 'Paciente', 'Fecha y Hora', 'Acciones'];
-
 
 const ListShifts = () => {
   const [listShifts, setListShifts] = useState([]);
   const [error, setError] = useState('');
 
-const [currentPage, setCurrentPage] = useState(1); 
-const [itemsPerPage] = useState(5); 
-const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
 
   useEffect(() => {
     const fetchShifts = async () => {
@@ -51,21 +48,36 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
   }
 
   return (
-    <Card className="h-full w-full">
-      <CardHeader floated={false} shadow={false} className="rounded-none">
-        <div className="mb-8 flex items-center justify-between gap-8">
+    <Card className="h-full w-full dark:bg-gradient-to-r from-spacecadet to-spacecadetlow ">
+      <CardHeader
+        floated={false}
+        shadow={false}
+        className="rounded-none dark:bg-gradient-to-r from-spacecadet to-spacecadetlow "
+      >
+        <div className="mb-8 flex items-center justify-between gap-8 ">
           <div>
-          <h2 className="text-robineggblue font-extrabold">Registros</h2>
-            <Typography variant="h5" color="blue-gray" className='text-spacecadet' >
-            Lista de Registros de Turnos
+            <h2 className="text-robineggblue font-extrabold">Registros</h2>
+            <Typography
+              variant="h5"
+              color="blue-gray"
+              className="text-spacecadet dark:text-white"
+            >
+              Lista de Registros de Turnos
             </Typography>
-           
-            <Typography color="gray" className="mt-1 font-normal">
+
+            <Typography
+              color="gray"
+              className="mt-1 font-normal dark:text-white"
+            >
               Mira más información acerca de todos los turnos
             </Typography>
           </div>
           <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
-            <Button variant="outlined" size="sm">
+            <Button
+              variant="outlined"
+              size="sm"
+              className="dark:text-white dark:border-white"
+            >
               Ver todos
             </Button>
           </div>
@@ -74,13 +86,14 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
           <div className="w-full md:w-72">
             <Input
               label="Busca fecha"
-              icon={<MagnifyingGlassIcon className="h-5 w-5" />}
+              icon={<MagnifyingGlassIcon className="h-5 w-5 " />}
+              className="dark:bg-white"
             />
           </div>
         </div>
       </CardHeader>
       <CardBody className="overflow-scroll lg:overflow-hidden px-0">
-        <table className="mt-4 w-full min-w-max table-auto text-left">
+        <table className="mt-4 w-full min-w-max table-auto text-left ">
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (
@@ -91,7 +104,7 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                   <Typography
                     variant="small"
                     color="blue-gray"
-                    className="font-normal leading-none opacity-70"
+                    className="font-normal leading-none opacity-70 dark:text-white"
                   >
                     {head}
                   </Typography>
@@ -113,7 +126,7 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                 return (
                   <tr key={id}>
                     <td className={classes}>
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 ">
                         <Avatar
                           src={
                             'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg'
@@ -125,7 +138,7 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                           <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal"
+                            className="font-normal dark:text-white"
                           >
                             {odontologoSalidaDto?.nombre}{' '}
                             {odontologoSalidaDto?.apellido}
@@ -133,7 +146,7 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                           <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal opacity-70"
+                            className="font-normal opacity-70 dark:text-white"
                           >
                             {odontologoSalidaDto?.matricula}
                           </Typography>
@@ -141,22 +154,31 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                       </div>
                     </td>
                     <td className={classes}>
-                      <div className="flex flex-col">
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
-                        >
-                          {pacienteSalidaDto?.nombre}{' '}
-                          {pacienteSalidaDto?.apellido}
-                        </Typography>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal opacity-70"
-                        >
-                          {pacienteSalidaDto?.dni}
-                        </Typography>
+                      <div className="flex items-center gap-3 ">
+                        <Avatar
+                          src={
+                            'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg'
+                          }
+                          alt={id}
+                          size="sm"
+                        />
+                        <div className="flex flex-col">
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal dark:text-white"
+                          >
+                            {pacienteSalidaDto?.nombre}{' '}
+                            {pacienteSalidaDto?.apellido}
+                          </Typography>
+                          <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal opacity-70 dark:text-white"
+                          >
+                            {pacienteSalidaDto?.dni}
+                          </Typography>
+                        </div>
                       </div>
                     </td>
                     {/* <td className={classes}>
@@ -176,6 +198,7 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                           size="sm"
                           value={fechaHora.replace('T', ' ')}
                           color={'blue-gray'}
+                          className="dark:text-white"
                         />
                       </div>
                     </td>
@@ -206,9 +229,49 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
                           </svg>
                         </IconButton>
                       </Tooltip>
-                      <Tooltip content="Eliminar" className="bg-white text-black">
+                      <Tooltip
+                        content="Eliminar"
+                        className="bg-white text-black"
+                      >
                         <IconButton variant="text">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 48 48"><g fill="none" strokeLinejoin="round" strokeWidth={4}><path fill="#01CFC9" stroke="#000" d="M9 10V44H39V10H9Z"></path><path stroke="#fff" strokeLinecap="round" d="M20 20V33"></path><path stroke="#fff" strokeLinecap="round" d="M28 20V33"></path><path stroke="#000" strokeLinecap="round" d="M4 10H44"></path><path fill="#01CFC9" stroke="#000" d="M16 10L19.289 4H28.7771L32 10H16Z"></path></g></svg>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1.5rem"
+                            height="1.5rem"
+                            viewBox="0 0 48 48"
+                          >
+                            <g
+                              fill="none"
+                              strokeLinejoin="round"
+                              strokeWidth={4}
+                            >
+                              <path
+                                fill="#01CFC9"
+                                stroke="#000"
+                                d="M9 10V44H39V10H9Z"
+                              ></path>
+                              <path
+                                stroke="#fff"
+                                strokeLinecap="round"
+                                d="M20 20V33"
+                              ></path>
+                              <path
+                                stroke="#fff"
+                                strokeLinecap="round"
+                                d="M28 20V33"
+                              ></path>
+                              <path
+                                stroke="#000"
+                                strokeLinecap="round"
+                                d="M4 10H44"
+                              ></path>
+                              <path
+                                fill="#01CFC9"
+                                stroke="#000"
+                                d="M16 10L19.289 4H28.7771L32 10H16Z"
+                              ></path>
+                            </g>
+                          </svg>
                         </IconButton>
                       </Tooltip>
                     </td>
@@ -220,29 +283,36 @@ const currentShifts = listShifts.slice(indexOfFirstItem, indexOfLastItem);
         </table>
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-  <Typography variant="small" color="blue-gray" className="font-normal">
-    Páginas {currentPage} de {Math.ceil(listShifts.length / itemsPerPage)}
-  </Typography>
-  <div className="flex gap-2">
-    <Button
-      variant="outlined"
-      size="sm"
-      onClick={() => setCurrentPage(currentPage - 1)}
-      disabled={currentPage === 1}
-    >
-      Previos
-    </Button>
-    <Button
-      variant="outlined"
-      size="sm"
-      onClick={() => setCurrentPage(currentPage + 1)}
-      disabled={currentPage === Math.ceil(listShifts.length / itemsPerPage)}
-    >
-      Siguientes
-    </Button>
-  </div>
-</CardFooter>
-
+        <Typography
+          variant="small"
+          color="blue-gray"
+          className="font-normal dark:text-white"
+        >
+          Páginas {currentPage} de {Math.ceil(listShifts.length / itemsPerPage)}
+        </Typography>
+        <div className="flex gap-2">
+          <Button
+            variant="outlined"
+            size="sm"
+            className=" dark:text-white dark:border-white"
+            onClick={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Previos
+          </Button>
+          <Button
+            variant="outlined"
+            size="sm"
+            onClick={() => setCurrentPage(currentPage + 1)}
+            disabled={
+              currentPage === Math.ceil(listShifts.length / itemsPerPage)
+            }
+            className="dark:text-white dark:border-white"
+          >
+            Siguientes
+          </Button>
+        </div>
+      </CardFooter>
     </Card>
   );
 };

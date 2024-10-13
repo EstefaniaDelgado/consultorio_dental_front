@@ -76,14 +76,14 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
       {/* Form */}
       <form
         onSubmit={handleSubmitForm}
-        className="flex flex-col gap-2 max-w-[350px] bg-white p-5 rounded-2xl relative shadow-2xl border border-robineggblue  "
+        className="flex flex-col gap-2 max-w-[350px] bg-white dark:bg-gradient-to-r from-spacecadet to-spacecadetlow dark:text-white  p-5 rounded-2xl relative shadow-2xl border border-robineggblue  "
       >
         <p className="text-[28px] text-robineggblue font-semibold tracking-tighter relative flex items-center pl-8">
           Registrar Turno
           <span className="absolute left-0 w-4 h-4 bg-robineggblue rounded-full"></span>
           <span className="absolute left-0 w-4 h-4 bg-robineggblue rounded-full animate-ping"></span>
         </p>
-        <p className="text-gray-600 text-sm">
+        <p className="text-gray-600 text-sm dark:text-white">
           Datos para la creacion de un turno:
         </p>
 
@@ -139,7 +139,7 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
           Fecha y Hora
           <input
             type="datetime-local"
-            className="w-full p-2 pb-4 border border-gray-300 rounded-md outline-none"
+            className="w-full p-2 pb-4 border border-gray-300 text-black rounded-md outline-none"
             onChange={handleDateChange}
             value={shiftRegister.fechaHora}
           />
