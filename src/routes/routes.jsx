@@ -6,6 +6,8 @@ import Patient from "../views/Patient/Patient";
 import ListDentists from "../views/Dentist/components/ListDentists";
 import Home from "../views/Layout/components/Home/Home";
 import ListPatients from "../views/Patient/components/ListPatient";
+import ListShifts from "../views/Shift/components/ListShifts";
+import UpdateShift from "../views/Shift/UpdateShift/UpdateShift";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
       {
         path: "turnos",
         element: <Shift />,
+      },
+      {
+        path: "listar-turnos",
+        element: <ListShifts />,
+      },
+      {
+        path: "actualizar-turno/:id",
+        element: <UpdateShift />,
       },
     ],
   },

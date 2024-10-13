@@ -1,21 +1,31 @@
-import { useEffect, useRef, useState } from 'react';
-import SearchPatient from './components/SearchPatient';
-import SearchDentist from './components/SearchDentist';
-import patientService from '../../services/patientService';
-import dentistService from '../../services/dentistService';
-import FilterListPatient from './components/FilterListPatient';
-import FilterListDentist from './components/FilterListDentist';
-import FormRegister from './components/FormRegister';
-import useSearch from '../../Hooks/useSearch';
-import { ToastContainer } from 'react-toastify';
+import { useEffect, useRef, useState } from "react";
+import { useLocation, useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import useSearch from "@/Hooks/useSearch";
+import patientService from "@/services/patientService";
+import dentistService from "@/services/dentistService";
+import SearchPatient from "../components/SearchPatient";
+import FilterListPatient from "../components/FilterListPatient";
+import SearchDentist from "../components/SearchDentist";
+import FilterListDentist from "../components/FilterListDentist";
+import FormUpdate from "./components/FormUpdate";
 
-const Shift = () => {
+const UpdateShift = () => {
+  const location = useLocation();
+  const {
+    currentPatient = {},
+    currentDentist = {},
+    currentFechaHora = null,
+  } = location.state || {};
+
+  const { id } = useParams();
+
   const [listPatients, setListPatients] = useState([]);
-
   const [listDentists, setListDentists] = useState([]);
 
   const [selectedDentist, setSelectedDentist] = useState({});
   const [selectedPatient, setSelectedPatient] = useState({});
+  const [selectedFechaHora, setSelectedFechaHora] = useState({});
 
   //usando el hook creado
   const {
@@ -36,7 +46,7 @@ const Shift = () => {
         const response = await patientService.getPatients();
         setListPatients(response);
       } catch (error) {
-        console.log('Ha ocurrido un error: ', error);
+        console.log("Ha ocurrido un error: ", error);
       }
     };
     apiListPatients();
@@ -50,7 +60,7 @@ const Shift = () => {
     apiListDentists();
   }, []);
 
-  //controla desde el padre la limpieza del estado que contien el objeto que se selecciono pra que ante una nueva busqueda muestre de nuevo la lista
+  //controla desde el padre la limpieza del estado que contien el objeto que se selecciono para que ante una nueva busqueda muestre de nuevo la lista
   useEffect(() => {
     refContainerPatient.current.setSelectedPatient({});
   }, [searchPatient]);
@@ -58,6 +68,18 @@ const Shift = () => {
   useEffect(() => {
     refContainerDentist.current.setSelectedDentist({});
   }, [searchDentist]);
+
+  useEffect(() => {
+    if (currentPatient) {
+      setSelectedPatient(currentPatient);
+    }
+    if (currentDentist) {
+      setSelectedDentist(currentDentist);
+    }
+    if (currentFechaHora) {
+      setSelectedFechaHora(currentFechaHora);
+    }
+  }, [currentPatient, currentDentist, currentFechaHora]);
 
   return (
     <>
@@ -92,12 +114,14 @@ const Shift = () => {
         </div>
         <ToastContainer />
       </div>
-      <FormRegister
+      <FormUpdate
         selectedDentist={selectedDentist}
         selectedPatient={selectedPatient}
+        selectedFechaHora={selectedFechaHora}
+        shiftId={id}
       />
     </>
   );
 };
 
-export default Shift;
+export default UpdateShift;
