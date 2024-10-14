@@ -7,7 +7,6 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 import { FreeMode, Pagination } from "swiper/modules";
-import ProfileImg from "@/assets/profile-img.png";
 import StarFullFilled from "@/assets/star-full-filled.svg";
 import { useEffect, useState } from "react";
 
@@ -29,18 +28,18 @@ const Review = () => {
     };
   }, []);
 
-  const reviewSwiperSlides = review.map((review, index) => (
+  const reviewSwiperSlides = review.map(({ name, review, image }, index) => (
     <SwiperSlide
       key={index}
       className="flex flex-col p-4 justify-center items-center bg-white border border-robineggblue dark:border-spacecadetlow dark:bg-gradient-to-r from-spacecadet to-spacecadetlow rounded-3xl"
     >
-      <figure>
-        <img src={ProfileImg} alt="" />
+      <figure className="w-14 h-14 rounded-full">
+        <img src={image} alt="Profile Image" className="rounded-full"/>
       </figure>
       <h2 className="text-spacecadet font-semibold text-lg dark:text-robineggblue">
-        {review.name}
+        {name}
       </h2>
-      <p className="text-primary dark:text-white py-2">{review.review}</p>
+      <p className="text-primary dark:text-white py-2">{review}</p>
       <div className="flex space-x-1">
         <img src={StarFullFilled} className="w-4 h-4" alt="Estrella" />
         <img src={StarFullFilled} className="w-4 h-4" alt="Estrella" />
