@@ -9,6 +9,7 @@ import {
 import { Link } from "react-router-dom";
 import MenuCustomList from "./components/MenuCustomList";
 import ThemeSwitcher from "./components/ThemeSwitcher";
+import AccordionCustomIcon from "./components/AcordionCustomIcon";
 
 const menuItems = [
   {
@@ -60,7 +61,7 @@ const NavbarItem = () => {
 
   const renderList = () => {
     return (
-      <ul className="mt-2 mb-4  flex flex-col justify-between gap-2 lg:w-full lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+      <ul className="mt-2 mb-4 flex flex-col justify-between gap-2 lg:w-full lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
         {menuItems.map(({ name, options }) => (
           <li key={name}>
             <MenuCustomList
@@ -93,10 +94,10 @@ const NavbarItem = () => {
             <Link to={"/turnos"}>Saca Tu Turno</Link>
           </button>
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center lg:hidden">
           <IconButton
             variant="text"
-            className=" h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
+            className="h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent"
             ripple={false}
             onClick={() => setOpenNav(!openNav)}
           >
@@ -131,12 +132,12 @@ const NavbarItem = () => {
               </svg>
             )}
           </IconButton>
-          <ThemeSwitcher customStyles="lg:hidden p-1.5 rounded-lg" />
+          <ThemeSwitcher customStyles="p-1.5 rounded-lg" />
         </div>
       </div>
       <Collapse open={openNav}>
         <div className="container mx-auto text-black">
-          {renderList()}
+          <AccordionCustomIcon menuItems={menuItems} />
           <div className="flex items-center gap-x-1">
             <Button
               fullWidth
