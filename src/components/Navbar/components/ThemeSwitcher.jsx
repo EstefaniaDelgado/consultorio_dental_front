@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { Sun, Moon} from "lucide-react";
+import { Sun, Moon } from "lucide-react";
 
-const ThemeSwitcher = () => {
+const ThemeSwitcher = ({ customStyles }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const ThemeSwitcher = () => {
     <div className="flex items-center">
       <button
         onClick={toggleTheme}
-        className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white focus:outline-none"
+        className={`text-robineggblue hover:text-white focus:outline-none bg-spacecadet ${customStyles}`}
       >
         {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
       </button>
