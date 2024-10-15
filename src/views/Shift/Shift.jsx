@@ -67,7 +67,7 @@ const Shift = () => {
             onSearch={handleOnSearch}
             listPatients={listPatients}
           />
-          <div className="absolute top-[70px] h-custom z-50">
+          <div className="absolute top-[70px] h-custom z-30">
             <FilterListPatient
               filterOptions={filterPatients}
               ref={refContainerPatient}
@@ -81,7 +81,7 @@ const Shift = () => {
             onSearch={handleOnSearch}
             listDentists={listDentists}
           />
-          <div className="absolute top-[70px] h-custom z-50">
+          <div className="absolute top-[70px] h-custom z-30">
             <FilterListDentist
               filterOptions={filterDentists}
               ref={refContainerDentist}
