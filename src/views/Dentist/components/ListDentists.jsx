@@ -4,7 +4,7 @@ import dentistService from '../../../services/dentistService';
 import EditIcon from '../../../assets/edit-icon.svg';
 import UpdateDentist from './UpdateDentist';
 import DeleteDentist from './DeleteDentist';
-import Asistent from '@/assets/asistent.png';
+import Asistent from '../../../assets/asistent.png';
 import Spinner from '../../../components/Spinner';
 
 const ListDentists = () => {
