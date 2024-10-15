@@ -1,15 +1,14 @@
-import FbIcon from "../../assets/facebook.svg";
-import InstaIcon from "../../assets/instagram.svg";
-import Ind from "../../assets/linkedin.svg";
-import Email from "../../assets/email.svg";
-import Phone from "../../assets/phone.svg";
-import Watch from "../../assets/watch.svg";
+import FbIcon from "@/assets/facebook.svg";
+import InstaIcon from "@/assets/instagram.svg";
+import Email from "@/assets/email.svg";
+import Phone from "@/assets/phone.svg";
+import Watch from "@/assets/watch.svg";
 import X from "@/assets/x.svg";
 import Location from "@/assets/location.svg";
 import data from "@/utils/footerData.json";
 import Column from "./components/Column";
 import FooterIcon from "./components/FooterIcon";
-import Subscription from "../../views/Layout/components/Subscription/Subscription";
+import Subscription from "@/views/Layout/components/Subscription/Subscription";
 
 const Footer = () => {
   const footerColumns = data.data.map((column) => (
@@ -17,9 +16,9 @@ const Footer = () => {
   ));
 
   return (
-    <footer className="bg-paleblue w-full h-96 flex justify-evenly items-end py-12 relative mt-24">
-      <Subscription/>
-      <article className="w-2/12 flex flex-col gap-3">
+    <footer className="bg-paleblue w-full flex justify-evenly gap-8 lg:gap-0 px-4 flex-wrap pb-16 md:pb-20 pt-56 md:pt-44 relative mt-24">
+      <Subscription />
+      <article className="w-2/12 flex flex-col gap-3 basis-56">
         <h3 className="text-spacecadet font-black text-lg pb-2">
           DENTAL<span className="text-robineggblue">CARE</span>
         </h3>
@@ -48,7 +47,7 @@ const Footer = () => {
         </div>
       </article>
       {footerColumns}
-      <article className="flex flex-col gap-3">
+      <article className="flex flex-col gap-3 basis-56">
         <h3 className="font-extrabold text-spacecadet text-lg pb-2">
           Contáctanos
         </h3>

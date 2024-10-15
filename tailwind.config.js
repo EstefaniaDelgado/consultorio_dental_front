@@ -2,9 +2,12 @@ const withMT = require("@material-tailwind/react/utils/withMT");
 
 module.exports = withMT({
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: "media",
+  darkMode: "class",
   theme: {
     extend: {
+      spacing: {
+        'custom': 'calc(100% - 4rem)',
+      },
       colors: {
         primary: "#000000BD",
         royalblue: "#7383c1",
@@ -17,5 +20,22 @@ module.exports = withMT({
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addBase }) {
+      addBase({
+        ".no-spin::-webkit-outer-spin-button": {
+          "-webkit-appearance": "none",
+          margin: "0",
+        },
+        ".no-spin::-webkit-inner-spin-button": {
+          "-webkit-appearance": "none",
+          margin: "0",
+        },
+        ".no-spin": {
+          "-moz-appearance": "textfield",
+        },
+      });
+    },
+    require("tailwind-scrollbar"),
+  ],
 });

@@ -22,10 +22,10 @@ const content = [
   },
 ];
 
-const Study = () => {
+const AboutUs = () => {
   const renderAmounts = () => {
     return content.map((amount) => (
-      <Card className="border-robineggblue border-2 p-2 text-center w-28 sm:w-40 lg:w-48">
+      <Card key={`amount-item-${amount.text}`} className="border-robineggblue border-2 p-2 text-center w-28 sm:w-40 lg:w-48">
         <h4 className=" text-spacecadet font-extrabold text-2xl md:font-bold lg:text-3xl">
           {amount.number}
         </h4>
@@ -66,7 +66,7 @@ const Study = () => {
                 <p>Los Centros DentalPro están abiertos de 9 am a 8 pm.</p>
               </div>
             </div>
-            <div className="flex items-center gap-4 ">
+            <div className="flex items-center gap-1">
               <img src={CheckBook} alt="pagos" className="w-14" />
               <div className="flex flex-col">
                 {' '}
@@ -89,4 +89,4 @@ const Study = () => {
   );
 };
 
-export default Study;
+export default AboutUs;

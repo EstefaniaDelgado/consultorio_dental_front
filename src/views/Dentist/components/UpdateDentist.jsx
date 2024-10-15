@@ -12,14 +12,16 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
- 
+  console.log('dentista', dentist);
   const [inputs, setInputs] = useState({
     nombre: '',
     apellido: '',
     matricula: '',
+    genero: '',
   });
 
   const [error, setError] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (dentist) {
@@ -27,6 +29,7 @@ const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
         nombre: dentist.nombre || '',
         apellido: dentist.apellido || '',
         matricula: dentist.matricula || '',
+        genero: dentist.genero || '',
       });
     }
   }, [dentist]);
@@ -46,6 +49,7 @@ const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await dentistService.updateDentist(inputs, dentist.id);
       if (response.status) {
@@ -58,6 +62,8 @@ const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
       }
     } catch (error) {
       console.log('Error al actualizar el dentista:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -99,7 +105,7 @@ const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
                 Nombre
                 <input
                   type="text"
-                  className="w-full p-2 pb-2 border border-gray-300 rounded-md outline-none"
+                  className="w-full text-black p-2 pb-2 border border-robineggblue rounded-md outline-none"
                   value={inputs.nombre}
                   name="nombre"
                   onChange={handleOnChangeInputs}
@@ -113,7 +119,7 @@ const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
                 Apellido
                 <input
                   type="text"
-                  className="w-full p-2 pb-2 border border-gray-300 rounded-md outline-none"
+                  className="w-full p-2 pb-2 border border-robineggblue text-black rounded-md outline-none"
                   onChange={handleOnChangeInputs}
                   name="apellido"
                   value={inputs.apellido}
@@ -127,7 +133,7 @@ const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
                 Matricula
                 <input
                   type="number"
-                  className="w-full p-2 pb-2 border border-gray-300 rounded-md outline-none"
+                  className="w-full p-2 pb-2 border border-robineggblue text-black rounded-md outline-none"
                   onChange={handleOnChangeInputs}
                   name="matricula"
                   value={inputs.matricula}
@@ -136,6 +142,38 @@ const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
                   {error.matricula ? error.matricula : null}
                 </span>
               </label>
+              <div className="grid grid-cols-1  gap-6 w-full">
+                <div className="relative w-full">
+                  <fieldset className="flex justify-around border border-robineggblue p-2 rounded-md">
+                    <legend>Selecciona el género:</legend>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        id="masculino"
+                        name="genero"
+                        checked={inputs.genero === 'MASCULINO'}
+                        value="MASCULINO"
+                        onChange={handleOnChangeInputs}
+                      />
+                      <label htmlFor="masculino">Masculino</label>
+                    </div>
+                    <div className="flex items-center  gap-2">
+                      <input
+                        type="radio"
+                        id="femenino"
+                        name="genero"
+                        checked={inputs.genero === 'FEMENINO'}
+                        value="FEMENINO"
+                        onChange={handleOnChangeInputs}
+                      />
+                      <label htmlFor="femenino">Femenino</label>
+                    </div>
+                  </fieldset>
+                  <span className="text-red-400">
+                    {error.genero ? error.genero : null}
+                  </span>
+                </div>
+              </div>
             </div>
           </DialogBody>
           <DialogFooter className="space-x-2 ">
@@ -144,6 +182,7 @@ const UpdateDentist = ({ open, handleOpen, dentist, setDentists }) => {
             </Button>
             <Button
               type="submit"
+              loading={isLoading}
               disabled={
                 !inputs.nombre ||
                 !inputs.apellido ||

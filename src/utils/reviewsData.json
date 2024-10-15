@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "name": "Alessandro",
+      "review": "Personal amable y rápido... Lo recomiendo encarecidamente a cualquiera que necesite atención dental.",
+      "image": "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-6.jpg"
+    },
+    {
+      "name": "María",
+      "review": "Muy buenos profesionales, muy atentos y amables. Recomiendo la atención.",
+      "image": "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg"
+    },
+    {
+      "name": "Miguel",
+      "review": "Excelente atención, muy amable y profesional. Lo recomiendo encarecidamente.",
+      "image": "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg"
+    },
+    {
+      "name": "Pedro",
+      "review": "Excelente atención. Me sentí muy cómodo durante todo el procedimiento dental. Lo recomiendo sin duda.",
+      "image": "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg"
+    },
+    {
+      "name": "Lucía",
+      "review": "Gran experiencia, el doctor fue muy paciente y cuidadoso. El tratamiento dental fue indoloro y eficaz.",
+      "image": "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg"
+    },
+    {
+      "name": "Andrés",
+      "review": "Muy profesional, el servicio fue rápido y detallado. Salí muy satisfecho con los resultados del blanqueamiento dental.",
+      "image": "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-5.jpg"
+    }
+  ]
+}

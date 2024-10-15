@@ -2,15 +2,15 @@ import FAQ from '../FAQ/FAQ';
 import Hero from '../Hero/Hero';
 import Review from '../Review/Review';
 import Staff from '../Staff/Staff';
-import Study from '../Study/Study';
+import AboutUs from '../AboutUs/AboutUs';
 import Treatment from '../Treatment/Treatment';
 
 const Home = () => {
   return (
     <>
       <Hero />
-      <Treatment/>
-      <Study/>
+      <Treatment />
+      <AboutUs />
       <Staff />
       <FAQ />
       <Review />
