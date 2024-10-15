@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import dentistService from "../../../services/dentistService";
-import EditIcon from "../../../assets/edit-icon.svg";
-import UpdateDentist from "./UpdateDentist";
-import DeleteDentist from "./DeleteDentist";
-import Asistent from "@/assets/Asistent.png";
-import Spinner from "../../../components/Spinner";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import dentistService from '../../../services/dentistService';
+import EditIcon from '../../../assets/edit-icon.svg';
+import UpdateDentist from './UpdateDentist';
+import DeleteDentist from './DeleteDentist';
+import Asistent from '@/assets/asistent.png';
+import Spinner from '../../../components/Spinner';
 
 const ListDentists = () => {
   const [dentists, setDentists] = useState([]);
-
+  console.log(dentists);
   const [selectedDentist, setSelectedDentist] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +21,7 @@ const ListDentists = () => {
         const response = await dentistService.getDentists();
         setDentists([...response]);
       } catch (error) {
-        console.error("Error fetching dentists:", error);
+        console.error('Error fetching dentists:', error);
       } finally {
         setIsLoading(false);
       }
@@ -34,8 +34,12 @@ const ListDentists = () => {
     setOpen(!open);
   };
 
+  const dentistOrder = dentists.sort((a, b) => {
+    return new Date(a.fechaCreacion) - new Date(b.fechaCreacion);
+  });
+
   const renderList = () => {
-    return dentists?.map((dentist) => (
+    return dentistOrder?.map((dentist) => (
       <div key={`dentist-${dentist.id}`} className="w-56 mx-auto h-full py-5">
         <article className="bg-white border border-robineggblue dark:border-spacecadetlow dark:bg-gradient-to-r from-spacecadet to-spacecadetlow rounded-[2rem] w-56 h-32 relative flex items-end justify-center">
           <figure className="bg-paleblue rounded-3xl w-1/3 h-20 mx-auto absolute -top-1/3  left-1/2 transform -translate-x-1/2">
@@ -77,7 +81,7 @@ const ListDentists = () => {
         NUESTROS ESPECIALISTAS
       </h2>
 
-      <section className="relative w-full my-8 mb-20 grid md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+      <section className="relative w-full my-10 mb-20 grid gap-y-10 md:grid-cols-2 lg:grid-cols-3 md:gap-y-20">
         {isLoading ? (
           <Spinner />
         ) : !dentists.length ? (
