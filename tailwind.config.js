@@ -18,6 +18,9 @@ module.exports = withMT({
         spacecadetlow: "#0F2650CC",
         aliceblue: "#EEFBFA",
       },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
     },
   },
   plugins: [
