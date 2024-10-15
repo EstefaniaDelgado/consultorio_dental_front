@@ -1,4 +1,4 @@
-import Asistent from "@/assets/Asistent.png";
+import Asistent from "../../../../../assets/asistent.png";
 
 const CardStaff = ({ nombre, apellido}) => {
   return (
