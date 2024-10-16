@@ -5,7 +5,7 @@ import Footer from "../../components/Footer.jsx/Footer";
 
 const Layout = () => {
   return (
-    <div className="w-full flex flex-col justify-center items-center min-h-screen font-poppins bg-aliceblue">
+    <div className="w-full flex flex-col justify-center items-center min-h-screen font-poppins dark:bg-richblack bg-aliceblue">
       <NavbarItem />
       <main className="py-12 px-4 flex flex-col flex-1 w-full max-w-screen-xl justify-center items-center">
         <Outlet />

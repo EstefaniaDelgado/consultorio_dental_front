@@ -21,7 +21,7 @@ const ThemeSwitcher = ({ customStyles }) => {
     <div className="flex items-center">
       <button
         onClick={toggleTheme}
-        className={`text-spacecadet dark:text-robineggblue focus:outline-none bg-white border border-robineggblue dark:border-none dark:bg-spacecadet ${customStyles}`}
+        className={`text-spacecadet dark:text-robineggblue focus:outline-none bg-white border border-robineggblue dark:bg-spacecadet ${customStyles}`}
       >
         {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
       </button>

@@ -76,10 +76,10 @@ const NavbarItem = () => {
   };
 
   return (
-    <Navbar className="bg-aliceblue mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4 sticky top-0 z-50 rounded-t-none">
+    <Navbar className="bg-aliceblue dark:bg-yankeesblue mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4 sticky top-0 z-50 rounded-t-none dark:border-none">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Link to={"/"}>
-          <Typography className="text-spacecadet text-2xl md:text-4xl font-extrabold">
+          <Typography className="text-spacecadet dark:text-white text-2xl md:text-4xl font-extrabold">
             DENTAL
             <strong className="text-robineggblue font-extrabold">CARE</strong>
           </Typography>
@@ -90,7 +90,7 @@ const NavbarItem = () => {
         </div>
         <ThemeSwitcher customStyles="hidden lg:inline-block p-2.5 rounded-xl" />
         <div className="hidden lg:flex items-center gap-x-1">
-          <button className="hidden lg:inline-block text-robineggblue bg-gradient-to-r from-spacecadet to-spacecadetlow px-3 py-2 rounded-xl">
+          <button className="hidden lg:inline-block text-spacecadet dark:text-robineggblue dark:bg-gradient-to-r from-spacecadet to-spacecadetlow px-3 py-2 rounded-xl border bg-white border-robineggblue">
             <Link to={"/turnos"}>Saca Tu Turno</Link>
           </button>
         </div>
