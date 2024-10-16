@@ -18,5 +18,4 @@ const apiDentist = createAxiosInstance(`${API_BASE_URL}/odontologos`);
 const apiPatients = createAxiosInstance(`${API_BASE_URL}/pacientes`);
 const apiShifts = createAxiosInstance(`${API_BASE_URL}/turnos`);
 
-
 export { apiDentist, apiPatients, apiShifts };

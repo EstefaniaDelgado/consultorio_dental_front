@@ -5,25 +5,30 @@ import EditIcon from "@/assets/edit-icon.svg";
 import Spinner from "@/components/Spinner";
 import UpdatePatient from "./UpdatePatient";
 import DeletePatient from "./DeletePatient";
-
-const customers = [
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-6.jpg",
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-6.jpg",
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-  "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-4.jpg",
-];
+import getImagesFromAPI from "@/services/getProfileImages";
 
 const ListPatients = () => {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [femaleProfileImage, setFemaleProfileImage] = useState([]);
+  const [maleProfileImage, setMaleProfileImage] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const femaleImages = await getImagesFromAPI("female");
+        const maleImages = await getImagesFromAPI("male");
+        setFemaleProfileImage(femaleImages);
+        setMaleProfileImage(maleImages);
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+
+    fetchImages();
+  }, []);
 
   useEffect(() => {
     const api = async () => {
@@ -81,7 +86,11 @@ const ListPatients = () => {
                 <div className="flex items-center gap-x-3">
                   <Avatar
                     size="sm"
-                    src={customers[index]}
+                    src={`${
+                      patient.genero === "FEMENINO"
+                        ? femaleProfileImage[index]
+                        : maleProfileImage[index]
+                    }`}
                     alt={patient.nombre}
                   />
                   <div>
