@@ -5,13 +5,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
 const FormRegister = ({ selectedDentist, selectedPatient }) => {
-  console.log(selectedDentist);
   const [shiftRegister, setShiftRegister] = useState({
     pacienteId: null,
     odontologoId: null,
     fechaHora: '',
   });
-console.log(shiftRegister)
+
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
@@ -24,6 +23,10 @@ console.log(shiftRegister)
         pacienteId: selectedPatient.id,
       }));
     }
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      pacienteId: null,
+    }));
   }, [selectedPatient]);
 
   useEffect(() => {
@@ -33,6 +36,10 @@ console.log(shiftRegister)
         odontologoId: selectedDentist.id,
       }));
     }
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      odontologoId: null,
+    }));
   }, [selectedDentist]);
 
   const handleDateChange = (e) => {
@@ -40,6 +47,9 @@ console.log(shiftRegister)
       ...prev,
       fechaHora: e.target.value.replace('T', ' '),
     }));
+    if (shiftRegister.fechaHora) {
+      setErrors({ ...errors, fechaHora: null });
+    }
   };
 
   const handleSubmitForm = (e) => {
@@ -61,7 +71,7 @@ console.log(shiftRegister)
             progress: undefined,
             theme: 'light',
           });
-          setErrors({})
+          setErrors({});
           setTimeout(() => {
             navigate('/listar-turnos');
           }, 2000);
@@ -109,9 +119,7 @@ console.log(shiftRegister)
               )}
             </p>
           </label>
-          <span className="text-red-400">
-            {errors.pacienteId ? errors.pacienteId : null}
-          </span>
+          <span className="text-red-400">{errors.pacienteId}</span>
         </div>
 
         <label className="relative">
@@ -132,9 +140,7 @@ console.log(shiftRegister)
               '------------'
             )}
           </p>
-          <span className="text-red-400">
-            {errors.odontologoId ? errors.odontologoId : null}
-          </span>
+          <span className="text-red-400">{errors.odontologoId}</span>
         </label>
 
         <label className="relative">
@@ -145,15 +151,10 @@ console.log(shiftRegister)
             onChange={handleDateChange}
             value={shiftRegister.fechaHora}
           />
-          <span className="text-red-400">
-            {errors.fechaHora ? errors.fechaHora : null}
-          </span>
+          <span className="text-red-400">{errors.fechaHora}</span>
         </label>
 
         <button
-          //   disabled={
-          //  Object.keys(errors).length
-          // }
           type="submit"
           className="w-full p-2 text-white bg-robineggblue rounded-lg hover:bg-light-blue-500 transition"
         >

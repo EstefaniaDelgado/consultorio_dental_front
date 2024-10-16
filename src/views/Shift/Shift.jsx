@@ -25,11 +25,7 @@ const Shift = () => {
     setErrorVisible(true);
   };
 
-  // const notify =()=>{
-    
-  // }
-
-  //usando el hook creado
+   //usando el hook creado
   const {
     handleOnSearch,
     filterDentists,

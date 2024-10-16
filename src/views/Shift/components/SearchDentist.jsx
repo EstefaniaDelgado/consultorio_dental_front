@@ -14,14 +14,14 @@ const ATTRIBUTES = ['Nombre', 'Apellido', 'Matricula'];
 const OPTIONS = ['Nombre', 'Apellido', 'Matricula'];
 
 const SearchDentist = ({ onSearch, listDentists }) => {
-  
   const [itemSearch, setItemSearch] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
 
   const TYPE = 'dentist';
 
   //handle que setee la busqueda y la envie
-  const handleOnClickSearch = () => {
+  const handleOnClickSearch = (e) => {
+    e.preventDefault();
     onSearch(listDentists, OPTIONS[itemSearch], searchTerm, TYPE);
     setSearchTerm('');
   };
@@ -31,7 +31,7 @@ const SearchDentist = ({ onSearch, listDentists }) => {
       <Typography variant="small" className="mb-1 text-spacecadet font-bold">
         OPCIONES DE BÚSQUEDA
       </Typography>
-      <div className="relative flex w-full">
+      <form className="relative flex w-full">
         <Menu placement="bottom-start">
           <MenuHandler>
             <Button
@@ -80,7 +80,7 @@ const SearchDentist = ({ onSearch, listDentists }) => {
             />
           }
         />
-      </div>
+      </form>
     </div>
   );
 };

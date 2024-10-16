@@ -64,7 +64,7 @@ const FilterListDentist = forwardRef(({ filterOptions, selectedDentist, setSelec
 
   return (
     <Card
-      className={`w-full max-h-52 overflow-y-auto max-w-80 mx-auto ${
+      className={`w-full max-h-52 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-100 max-w-80 mx-auto ${
         !filterOptions.length ? 'boder-none' : 'border-robineggblue border-2'
       } `}
     >
