@@ -6,7 +6,6 @@ import {
   MenuItem,
   Button,
   Typography,
-  button,
 } from '@material-tailwind/react';
 import { useState } from 'react';
 import SearchIcon from '@/assets/search.svg';

@@ -83,7 +83,7 @@ const ListShifts = () => {
               Mira más información acerca de todos los turnos
             </Typography>
           </div>
-          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+          {/* <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
             <Button
               variant="outlined"
               size="sm"
@@ -91,16 +91,16 @@ const ListShifts = () => {
             >
               Ver todos
             </Button>
-          </div>
+          </div> */}
         </div>
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <div className="w-full md:w-72">
+          {/* <form className="w-full md:w-72">
             <Input
               label="Busca fecha"
               icon={<MagnifyingGlassIcon className="h-5 w-5 " />}
               className="dark:bg-white"
             />
-          </div>
+          </form> */}
         </div>
       </CardHeader>
       <CardBody className="overflow-scroll lg:overflow-hidden px-0">

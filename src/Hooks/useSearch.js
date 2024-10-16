@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SearchDentist from '../views/Shift/components/SearchDentist';
 
-const useSearch = () => {
+const useSearch = (handleError) => {
   //estados para guardar el resultado del filtro
   const [filterPatients, setFilterPatients] = useState([]);
   const [filterDentists, setFilterDentists] = useState([]);
@@ -21,18 +20,9 @@ const useSearch = () => {
         .toLowerCase()
         .includes(searchTerm.toString().toLowerCase());
     });
+
     if (filter.length === 0) {
-      toast('No hay ningún resultado!', {
-        position: 'top-right',
-        type: 'error',
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
+      handleError();
     }
     if (type === 'dentist') {
       setFilterDentists(filter);

@@ -23,6 +23,10 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
         pacienteId: selectedPatient.id,
       }));
     }
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      pacienteId: null,
+    }));
   }, [selectedPatient]);
 
   useEffect(() => {
@@ -32,6 +36,10 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
         odontologoId: selectedDentist.id,
       }));
     }
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      odontologoId: null,
+    }));
   }, [selectedDentist]);
 
   const handleDateChange = (e) => {
@@ -39,6 +47,9 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
       ...prev,
       fechaHora: e.target.value.replace('T', ' '),
     }));
+    if (shiftRegister.fechaHora) {
+      setErrors({ ...errors, fechaHora: null });
+    }
   };
 
   const handleSubmitForm = (e) => {
@@ -60,6 +71,7 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
             progress: undefined,
             theme: 'light',
           });
+          setErrors({});
           setTimeout(() => {
             navigate('/listar-turnos');
           }, 2000);
@@ -93,7 +105,7 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
             <p
               className={`${
                 Object.keys(selectedPatient).length
-                  ? 'border-robineggblue border-2 my-2'
+                  ? 'w-full p-2 border border-robineggblue rounded-md bg-white outline-none dark:text-black dark:bg-white'
                   : 'border-none'
               }`}
             >
@@ -107,9 +119,7 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
               )}
             </p>
           </label>
-          <span className="text-red-400">
-            {errors.pacienteId ? errors.pacienteId : null}
-          </span>
+          <span className="text-red-400">{errors.pacienteId}</span>
         </div>
 
         <label className="relative">
@@ -117,7 +127,7 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
           <p
             className={`${
               Object.keys(selectedDentist).length
-                ? 'border-robineggblue border-2 my-2'
+                ? 'w-full p-2 border border-robineggblue rounded-md bg-white outline-none dark:text-black dark:bg-white'
                 : 'border-none'
             }`}
           >
@@ -130,28 +140,21 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
               '------------'
             )}
           </p>
-          <span className="text-red-400">
-            {errors.odontologoId ? errors.odontologoId : null}
-          </span>
+          <span className="text-red-400">{errors.odontologoId}</span>
         </label>
 
         <label className="relative">
           Fecha y Hora
           <input
             type="datetime-local"
-            className="w-full p-2 pb-4 border border-gray-300 text-black rounded-md outline-none"
+            className="w-full p-2 pb-4 border border-robineggblue text-black rounded-md outline-none"
             onChange={handleDateChange}
             value={shiftRegister.fechaHora}
           />
-          <span className="text-red-400">
-            {errors.fechaHora ? errors.fechaHora : null}
-          </span>
+          <span className="text-red-400">{errors.fechaHora}</span>
         </label>
 
         <button
-          //   disabled={
-          //  Object.keys(errors).length
-          // }
           type="submit"
           className="w-full p-2 text-white bg-robineggblue rounded-lg hover:bg-light-blue-500 transition"
         >

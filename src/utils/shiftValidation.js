@@ -2,14 +2,13 @@
 const shiftValidation = ({ odontologoId, pacienteId, fechaHora }, status) => {
     const errors = {};
   
-    // Check if there are error messages for odontologoId, pacienteId, or fechaHora
-    if (odontologoId) {
+    if (odontologoId?.length) {
       errors.odontologoId = 'Deben especificarse los datos del odontologo';
     }
-    if (pacienteId) {
+    if (pacienteId?.length) {
       errors.pacienteId = 'Deben especificarse los datos del paciente';
     }
-    if (fechaHora) {
+    if (fechaHora?.length) {
       errors.fechaHora = 'Debe especificarse la fecha y hora del turno';
     }
     if (status) {

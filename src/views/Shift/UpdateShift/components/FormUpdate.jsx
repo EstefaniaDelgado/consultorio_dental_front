@@ -28,6 +28,10 @@ const FormUpdate = ({
         pacienteId: selectedPatient.id,
       }));
     }
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      pacienteId: null,
+    }));
   }, [selectedPatient]);
 
   useEffect(() => {
@@ -37,6 +41,10 @@ const FormUpdate = ({
         odontologoId: selectedDentist.id,
       }));
     }
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      odontologoId: null,
+    }));
   }, [selectedDentist]);
 
   useEffect(() => {
@@ -59,6 +67,9 @@ const FormUpdate = ({
       ...prev,
       fechaHora: e.target.value.replace("T", " "),
     }));
+    if (shiftRegister.fechaHora) {
+      setErrors({ ...errors, fechaHora: null });
+    }
   };
 
   const handleSubmitForm = (e) => {
