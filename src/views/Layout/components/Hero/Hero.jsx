@@ -5,10 +5,10 @@ import Dentist from "@/assets/dentist-hero.png";
 
 const Hero = () => {
   return (
-    <section className="px-4 md:flex md:flex-row-reverse md:w-full md:justify-evenly md:items-center">
+    <section className="px-4 mt-5 md:flex md:flex-row-reverse md:w-full md:justify-evenly md:items-center">
       <article className="py-3 md:w-2/5">
-        <div className="m-auto w-full max-w-48 md:max-w-none md:m-0  rounded-3xl">
-          <img src={Dentist} alt="odontologo" className="w-full" />
+        <div className="relative bg-robineggblue m-auto w-80 h-[150px] max-w-48 md:max-w-none md:m-0 md:h-60 rounded-3xl">
+          <img src={Dentist} alt="odontologo" className="absolute w-full bottom-0" />
         </div>
       </article>
 

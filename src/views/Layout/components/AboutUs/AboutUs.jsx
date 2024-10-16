@@ -38,9 +38,9 @@ const AboutUs = () => {
     <div className='mb-16'>
       {' '}
       <section className="px-4 mb-4 md:flex md:flex-row-reverse md:w-full md:justify-evenly md:items-start">
-        <article className="py-3 md:w-2/5 self-center">
-          <div>
-            <img src={Dentist} alt="odontologo" className="m-auto" />
+        <article className="py-3 md:w-2/5 self-center lg:self-end">
+          <div className="relative mt-10 bg-robineggblue m-auto w-80 h-[150px] max-w-48 md:max-w-none md:m-0 md:h-60 rounded-3xl">
+            <img src={Dentist} alt="odontologo" className="absolute w-full bottom-0 m-auto" />
           </div>
         </article>
 
