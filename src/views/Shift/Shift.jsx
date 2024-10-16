@@ -7,7 +7,8 @@ import FilterListPatient from './components/FilterListPatient';
 import FilterListDentist from './components/FilterListDentist';
 import FormRegister from './components/FormRegister';
 import useSearch from '../../Hooks/useSearch';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import ErrorNotification from '../../components/ErrorNotification';
 
 const Shift = () => {
   const [listPatients, setListPatients] = useState([]);
@@ -16,6 +17,17 @@ const Shift = () => {
 
   const [selectedDentist, setSelectedDentist] = useState({});
   const [selectedPatient, setSelectedPatient] = useState({});
+  const[error, setError]=useState('');
+
+  const [errorVisible, setErrorVisible] = useState(false);
+
+  const handleError = () => {
+    setErrorVisible(true);
+  };
+
+  // const notify =()=>{
+    
+  // }
 
   //usando el hook creado
   const {
@@ -24,7 +36,7 @@ const Shift = () => {
     filterPatients,
     searchDentist,
     searchPatient,
-  } = useSearch();
+  } = useSearch(handleError);
 
   const refContainerPatient = useRef();
   const refContainerDentist = useRef();
@@ -36,7 +48,7 @@ const Shift = () => {
         const response = await patientService.getPatients();
         setListPatients(response);
       } catch (error) {
-        console.log('Ha ocurrido un error: ', error);
+        setError(error);
       }
     };
     apiListPatients();
@@ -44,8 +56,12 @@ const Shift = () => {
 
   useEffect(() => {
     const apiListDentists = async () => {
-      const response = await dentistService.getDentists();
+      try {
+        const response = await dentistService.getDentists();
       setListDentists(response);
+      } catch (error) {
+        setError(error)
+      }
     };
     apiListDentists();
   }, []);
@@ -59,9 +75,15 @@ const Shift = () => {
     refContainerDentist.current.setSelectedDentist({});
   }, [searchDentist]);
 
+  if(error){
+    return <div>Ha ocurrido un error</div>
+  }
+
+ 
+
   return (
     <>
-      <div className="w-full p-4 flex flex-col justify-center  items-center gap-20 md:flex-row md:justify-center md:items-center md:gap-0 ">
+      <div className="w-full p-4 flex flex-col justify-center  mb-5 items-center gap-20 md:flex-row md:justify-center md:items-center md:gap-0 ">
         <div className="relative flex flex-col flex-1  items-center justify-center gap-3">
           <SearchPatient
             onSearch={handleOnSearch}
@@ -90,7 +112,11 @@ const Shift = () => {
             />
           </div>
         </div>
-        <ToastContainer />
+        <ErrorNotification
+        message="No hay ningún resultado!"
+        visible={errorVisible}
+        onClose={() => setErrorVisible(false)}
+      />
       </div>
       <FormRegister
         selectedDentist={selectedDentist}

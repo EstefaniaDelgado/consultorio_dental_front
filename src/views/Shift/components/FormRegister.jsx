@@ -5,12 +5,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
 const FormRegister = ({ selectedDentist, selectedPatient }) => {
+  console.log(selectedDentist);
   const [shiftRegister, setShiftRegister] = useState({
     pacienteId: null,
     odontologoId: null,
     fechaHora: '',
   });
-
+console.log(shiftRegister)
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
             progress: undefined,
             theme: 'light',
           });
+          setErrors({})
           setTimeout(() => {
             navigate('/listar-turnos');
           }, 2000);
@@ -93,7 +95,7 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
             <p
               className={`${
                 Object.keys(selectedPatient).length
-                  ? 'border-robineggblue border-2 my-2'
+                  ? 'w-full p-2 border border-robineggblue rounded-md bg-white outline-none dark:text-black dark:bg-white'
                   : 'border-none'
               }`}
             >
@@ -117,7 +119,7 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
           <p
             className={`${
               Object.keys(selectedDentist).length
-                ? 'border-robineggblue border-2 my-2'
+                ? 'w-full p-2 border border-robineggblue rounded-md bg-white outline-none dark:text-black dark:bg-white'
                 : 'border-none'
             }`}
           >
@@ -139,7 +141,7 @@ const FormRegister = ({ selectedDentist, selectedPatient }) => {
           Fecha y Hora
           <input
             type="datetime-local"
-            className="w-full p-2 pb-4 border border-gray-300 text-black rounded-md outline-none"
+            className="w-full p-2 pb-4 border border-robineggblue text-black rounded-md outline-none"
             onChange={handleDateChange}
             value={shiftRegister.fechaHora}
           />
