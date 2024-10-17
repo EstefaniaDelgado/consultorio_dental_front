@@ -16,13 +16,13 @@ const Footer = () => {
   ));
 
   return (
-    <footer className="bg-paleblue w-full flex justify-evenly gap-8 lg:gap-0 px-4 flex-wrap pb-16 md:pb-20 pt-56 md:pt-44 relative mt-24">
+    <footer className="bg-paleblue dark:bg-yankeesblue w-full flex justify-evenly gap-8 lg:gap-0 px-4 flex-wrap pb-16 md:pb-20 pt-56 md:pt-44 relative mt-24 dark:text-white">
       <Subscription />
       <article className="w-2/12 flex flex-col gap-3 basis-56">
-        <h3 className="text-spacecadet font-black text-lg pb-2">
+        <h3 className="text-spacecadet dark:text-white font-black text-lg pb-2">
           DENTAL<span className="text-robineggblue">CARE</span>
         </h3>
-        <p className="text-primary">
+        <p className="text-primary dark:text-white">
           Ofrecemos servicios de calidad con personal calificado con más de 5
           años de experiencia.
         </p>
@@ -34,7 +34,7 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             <img
-              className="bg-white dark:bg-spacecadet py-2 px-3 rounded-lg w-8 h-8"
+              className="bg-white dark:bg-spacecadet dark:border dark:border-robineggblue py-2 px-3 rounded-lg w-8 h-8"
               src={FbIcon}
               alt="facebook"
             />
@@ -48,7 +48,7 @@ const Footer = () => {
       </article>
       {footerColumns}
       <article className="flex flex-col gap-3 basis-56">
-        <h3 className="font-extrabold text-spacecadet text-lg pb-2">
+        <h3 className="font-extrabold text-spacecadet dark:text-white text-lg pb-2">
           Contáctanos
         </h3>
         <div className="flex gap-2">

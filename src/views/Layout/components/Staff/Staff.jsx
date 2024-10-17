@@ -31,14 +31,14 @@ const Staff = () => {
   return (
     <div className="text-center w-full my-8">
       <h2 className="text-robineggblue font-extrabold">STAFF</h2>
-      <h2 className="text-spacecadet font-bold text-4xl mt-4 mb-8">
+      <h2 className="text-spacecadet dark:text-white font-bold text-4xl mt-4 mb-8">
         Conozca a nuestros especialistas
       </h2>
       <div className="flex relative w-full justify-evenly items-center lg:justify-between flex-wrap gap-4  py-4">
         {isLoading ? (
           <Spinner />
         ) : !dentists.length ? (
-          <p className="absolute inset-0 flex items-center justify-center text-center text-spacecadet text-xl lg:text-2xl">
+          <p className="absolute inset-0 flex items-center justify-center text-center text-spacecadet dark:text-white text-xl lg:text-2xl">
             Proximamente!
           </p>
         ) : (

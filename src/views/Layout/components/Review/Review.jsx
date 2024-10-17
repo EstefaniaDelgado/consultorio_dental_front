@@ -34,7 +34,7 @@ const Review = () => {
       className="flex flex-col p-4 justify-center items-center bg-white border border-robineggblue dark:border-spacecadetlow dark:bg-gradient-to-r from-spacecadet to-spacecadetlow rounded-3xl"
     >
       <figure className="w-14 h-14 rounded-full">
-        <img src={image} alt="Profile Image" className="rounded-full"/>
+        <img src={image} alt="Profile Image" className="rounded-full" />
       </figure>
       <h2 className="text-spacecadet font-semibold text-lg dark:text-robineggblue">
         {name}
@@ -53,7 +53,7 @@ const Review = () => {
   return (
     <div className="text-center w-full mt-8 mb-20">
       <h2 className="text-robineggblue font-extrabold">NUESTRAS OPINIONES</h2>
-      <h2 className="text-spacecadet font-bold text-4xl mt-4 mb-8">
+      <h2 className="text-spacecadet dark:text-white font-bold text-4xl mt-4 mb-8">
         Lo que dicen de nosotros
       </h2>
       <Swiper
@@ -62,6 +62,16 @@ const Review = () => {
         freeMode={true}
         pagination={{
           clickable: true,
+          renderBullet: (index, className) => {
+            const isActive = className.includes(
+              "swiper-pagination-bullet-active"
+            );
+            const bulletColor = isActive
+              ? "bg-blue-gray-600"
+              : "bg-spacecadet dark:bg-white";
+            return `<span class="${className} ${bulletColor}
+            }"></span>`;
+          },
         }}
         modules={[FreeMode, Pagination]}
         className="w-full h-full pb-8 pt-4 px-2"

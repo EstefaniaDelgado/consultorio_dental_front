@@ -17,6 +17,8 @@ module.exports = withMT({
         spacecadet: '#0F2650',
         spacecadetlow: '#0F2650CC',
         aliceblue: '#EEFBFA',
+        richblack: '#061125',
+        yankeesblue: '#152749',
       },
       fontFamily: {
         poppins: ['Poppins', 'sans-serif'],

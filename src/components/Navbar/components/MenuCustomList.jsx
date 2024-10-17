@@ -32,7 +32,7 @@ const MenuCustomList = ({ name, options }) => {
       <MenuHandler>
         <Button
           variant="text"
-          className="flex items-center gap-3 text-base font-normal capitalize tracking-normal outline-none text-spacecadet"
+          className="flex items-center gap-3 text-base font-normal capitalize tracking-normal outline-none dark:text-white text-spacecadet"
         >
           {name}{" "}
           <ChevronDownIcon

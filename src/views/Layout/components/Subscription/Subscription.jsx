@@ -20,7 +20,7 @@ const Subscription = () => {
   }, []);
 
   return (
-    <div className="min-w-72 w-3/4 flex flex-col items-center justify-center bg-white border border-robineggblue dark:border-spacecadetlow rounded-[3.5rem] px-4 py-8 gap-4 dark:bg-gradient-to-r from-spacecadet to-spacecadetlow my-8 absolute top-0 transform -translate-y-28 max-w-screen-xl">
+    <div className="min-w-72 w-3/4 flex flex-col items-center justify-center bg-white border border-robineggblue dark:border-robineggblue rounded-[3.5rem] px-4 py-8 gap-4 dark:bg-gradient-to-r from-spacecadet to-spacecadetlow my-8 absolute top-0 transform -translate-y-28 max-w-screen-xl">
       <h2 className="text-2xl text-center md:text-3xl font-extrabold text-spacecadet dark:text-robineggblue">
         Suscríbete a nuestro boletín
       </h2>
