@@ -23,7 +23,7 @@ const Hero = () => {
         <p className="dark:text-white">
         Ofrecemos servicios odontológicos de alta calidad, respaldados por un equipo de expertos en una amplia gama de tratamientos, comprometidos con satisfacer las necesidades individuales de cada paciente.
         </p>
-        <button className="py-3 px-6 rounded-xl bg-white border border-robineggblue text-robineggblue md:self-start shadow-md font-medium dark:bg-gradient-to-r dark:from-spacecadet dark:to-spacecadetlow">
+        <button className="py-3 px-6 rounded-xl bg-white text-robineggblue md:self-start shadow-md font-bold dark:bg-gradient-to-r dark:from-spacecadet dark:to-spacecadetlow">
           Saca tu turno!
         </button>
         <div className="pb-4 flex flex-col justify-start items-start gap-2 md:flex-row lg:gap-8">
@@ -42,11 +42,11 @@ const Hero = () => {
             <img
               src={Location}
               alt="ubicación"
-              className="bg-white border border-robineggblue dark:bg-spacecadet p-2 rounded"
+              className="bg-white border border-robineggblue lg:self-start lg:mt-1 dark:bg-spacecadet p-2 rounded"
             />
             <div className="dark:text-white">
               <p>Ubicación</p>
-              <p>Calle San Isidro<h4>#58-77</h4></p>
+              <p>Calle San Isidro,#58-77</p>
             </div>
           </div>
         </div>
