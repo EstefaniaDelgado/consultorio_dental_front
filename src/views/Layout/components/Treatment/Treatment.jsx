@@ -53,7 +53,7 @@ const Treatment = () => {
   return (
     <div className="text-center w-full my-16">
       <h2 className="text-robineggblue font-extrabold">TRATAMIENTOS</h2>
-      <h2 className="mt-4 mb-9 text-spacecadet text-2xl text-center font-extrabold md:text-4xl md:font-bold ">
+      <h2 className="mt-4 mb-9 text-spacecadet text-2xl text-center font-extrabold md:text-4xl md:font-bold dark:text-white ">
         Conoce nuestros diferentes servicios
       </h2>
 
