@@ -3,6 +3,7 @@ import shiftService from "@/services/shiftService";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@material-tailwind/react";
 
 const FormUpdate = ({
   selectedDentist,
@@ -17,6 +18,7 @@ const FormUpdate = ({
   });
 
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -74,6 +76,7 @@ const FormUpdate = ({
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const fetch = async () => {
       try {
@@ -98,17 +101,19 @@ const FormUpdate = ({
         }
       } catch (error) {
         setErrors(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetch();
   };
 
   return (
-    <div className="my-10 w-full flex justify-center items-center mt-16 mb-3">
+    <div className="md:my-10 w-full flex justify-center items-center md:mt-16 mb-3">
       {/* Form */}
       <form
         onSubmit={handleSubmitForm}
-        className="flex flex-col gap-2 max-w-[350px] bg-white dark:bg-gradient-to-r from-spacecadet to-spacecadetlow p-5 rounded-2xl relative shadow-2xl border border-robineggblue dark:border-none"
+        className="flex flex-col gap-2 max-w-[350px] bg-white dark:bg-gradient-to-r from-spacecadet to-spacecadetlow p-5 rounded-2xl relative shadow-2xl border border-robineggblue"
       >
         <p className="text-[28px] text-robineggblue font-semibold tracking-tighter relative flex items-center pl-8 mx-auto">
           Actualizar Turno
@@ -125,7 +130,7 @@ const FormUpdate = ({
             <input
               disabled={true}
               type="text"
-              className="w-full p-2 border border-robineggblue rounded-md outline-none dark:text-black dark:bg-white"
+              className="w-full p-2 border border-robineggblue rounded-md outline-none dark:text-black dark:bg-white text-gray-700"
               value={
                 selectedPatient
                   ? `${selectedPatient.nombre || ""} ${
@@ -141,11 +146,11 @@ const FormUpdate = ({
         </div>
 
         <label className="relative dark:text-white">
-          Datos del Odontologo
+          Datos del Odontólogo
           <input
             disabled={true}
             type="text"
-            className="w-full p-2 border border-robineggblue rounded-md outline-none dark:text-black dark:bg-white"
+            className="w-full p-2 border border-robineggblue rounded-md outline-none dark:text-black dark:bg-white text-gray-700"
             value={
               selectedDentist
                 ? `${selectedDentist.nombre || ""} ${
@@ -172,18 +177,19 @@ const FormUpdate = ({
           </span>
         </label>
         <div>
-          <button
-            className="w-full p-2 text-white bg-spacecadetlow rounded-lg transition my-2"
+          <Button
+            className="w-full p-3 text-white bg-yankeesblue rounded-lg transition my-2 dark:border dark:border-robineggblue font-poppins"
             onClick={handleCancelClick}
           >
             Cancelar
-          </button>
-          <button
+          </Button>
+          <Button
             type="submit"
-            className="w-full p-2 text-white bg-robineggblue rounded-lg hover:bg-light-blue-500 transition"
+            loading={isLoading}
+            className="w-full p-3 text-white bg-robineggblue rounded-lg flex justify-center gap-2 hover:bg-light-blue-500 transition font-poppins"
           >
             Actualizar Turno
-          </button>
+          </Button>
         </div>
       </form>
       <ToastContainer />
