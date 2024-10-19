@@ -57,7 +57,7 @@ const AccordionCustomIcon = ({ menuItems }) => {
           >
             <AccordionHeader
               onClick={() => handleOpen(id + 1)}
-              className="py-2 border-none text-base text-spacecadet custom-accordion"
+              className="py-2 border-none text-base text-spacecadet dark:text-gray-200 custom-accordion font-poppins"
             >
               {name}
             </AccordionHeader>
@@ -68,7 +68,7 @@ const AccordionCustomIcon = ({ menuItems }) => {
                   as="a"
                   href={link}
                   variant="paragraph"
-                  className="text-spacecadet py-1 text-sm"
+                  className="text-spacecadet dark:text-gray-200 py-1 text-sm font-poppins"
                 >
                   {name}
                 </Typography>
