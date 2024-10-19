@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   Navbar,
   Typography,
-  Button,
   IconButton,
   Collapse,
 } from "@material-tailwind/react";
@@ -76,7 +75,7 @@ const NavbarItem = () => {
   };
 
   return (
-    <Navbar className="bg-aliceblue dark:bg-yankeesblue mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4 sticky top-0 z-50 rounded-t-none dark:border-none">
+    <Navbar className="bg-aliceblue dark:bg-yankeesblue mx-auto max-w-screen-xl px-4 py-2 shadow-none lg:px-8 lg:py-4 sticky top-0 z-50 rounded-t-none border-none">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <Link to={"/"}>
           <Typography className="text-spacecadet dark:text-white text-2xl md:text-4xl font-extrabold">
@@ -90,13 +89,14 @@ const NavbarItem = () => {
         </div>
         <ThemeSwitcher customStyles="hidden lg:inline-block p-2.5 rounded-xl" />
         <div className="hidden lg:flex items-center gap-x-1">
-          <button className="hidden lg:inline-block text-spacecadet dark:text-robineggblue dark:bg-gradient-to-r from-spacecadet to-spacecadetlow px-3 py-2 rounded-xl border bg-white border-robineggblue">
+          <button className="hidden lg:inline-block text-spacecadet dark:text-robineggblue dark:bg-gradient-to-r from-spacecadet to-spacecadetlow px-3 py-2 rounded-xl border bg-white border-robineggblue font-semibold shadow">
             <Link to={"/turnos"}>Saca Tu Turno</Link>
           </button>
         </div>
         <div className="flex gap-2 items-center lg:hidden">
           <IconButton
             variant="text"
+            aria-label="Hamburger Menu"
             className="h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent"
             ripple={false}
             onClick={() => setOpenNav(!openNav)}
@@ -105,7 +105,7 @@ const NavbarItem = () => {
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                className="h-6 w-6"
+                className="h-6 w-6 text-black dark:text-white"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
@@ -119,7 +119,7 @@ const NavbarItem = () => {
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
+                className="h-6 w-6 text-black dark:text-white"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth={2}
@@ -139,17 +139,14 @@ const NavbarItem = () => {
         <div className="container mx-auto text-black">
           <AccordionCustomIcon menuItems={menuItems} />
           <div className="flex items-center gap-x-1">
-            <Button
-              fullWidth
-              variant="gradient"
-              size="sm"
-              className="bg-spacecadetlow text-robineggblue"
+            <button
+              className="bg-white border dark:bg-gradient-to-r from-spacecadet to-spacecadetlow border-robineggblue text-spacecadet dark:text-robineggblue font-semibold w-full rounded-lg p-2.5 font-poppins"
             >
               <Link to={"/turnos"}>
                 {" "}
                 <span>Sacar turno!</span>
               </Link>
-            </Button>
+            </button>
           </div>
         </div>
       </Collapse>
