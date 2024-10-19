@@ -24,6 +24,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
     provincia: "",
   });
   const [error, setError] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (patient) {
@@ -83,7 +84,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
 
   const handleSubmitForm = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     patientInputs.domicilioEntradaDto = homeInputs;
 
     try {
@@ -115,6 +116,8 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
       }
     } catch (error) {
       console.log("Error al actualizar paciente", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -152,7 +155,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
       className="rounded-2xl overflow-y-scroll h-4/5 lg:h-auto form-container max-h-[95%] scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-100"
     >
       <form
-        className="relative flex flex-col gap-4 shadow-xl p-8 rounded-2xl bg-white dark:bg-gradient-to-r from-spacecadet to-spacecadetlow dark:text-white border border-robineggblue dark:border-none w-full"
+        className="relative flex flex-col gap-4 shadow-xl p-8 rounded-2xl bg-white dark:bg-gradient-to-r from-spacecadet to-spacecadetlow dark:text-white border border-robineggblue dark:border-none w-full font-poppins"
         onSubmit={handleSubmitForm}
       >
         <div className="flex justify-center items-center gap-2">
@@ -239,10 +242,11 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
               Fecha de ingreso
               <input
                 type="date"
-                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none dark:text-black"
+                className="w-full p-3 border border-robineggblue dark:border-none rounded-md outline-none"
                 onChange={handleOnChangePatientInputs}
                 name="fechaIngreso"
                 value={patientInputs.fechaIngreso}
+                disabled={true}
               />
             </label>
             <span className="text-red-400 text-sm absolute bottom-0 translate-y-full left-0">
@@ -253,7 +257,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-black dark:text-white">
           <div className="relative">
             <fieldset className="flex justify-around border border-robineggblue p-2 rounded-md">
-              <legend>Selecciona el género:</legend>
+              <legend className="px-1">Selecciona el género:</legend>
               <div className="flex items-center gap-2">
                 <input
                   type="radio"
@@ -358,7 +362,7 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
         </div>
         <div className="flex flex-col sm:flex-row sm:gap-4">
           <Button
-            className="bg-gradient-to-r from-spacecadetlow to-spacecadet py-4 rounded-lg text-white w-full mt-3"
+            className="bg-gradient-to-r from-spacecadetlow to-spacecadet py-4 rounded-lg text-white w-full mt-3 font-poppins dark:border dark:border-robineggblue"
             onClick={() => handleCancelClick()}
           >
             Cancelar
@@ -366,7 +370,8 @@ const UpdatePatient = ({ isOpen, handleOpen, patient, setPatients }) => {
           <Button
             disabled={isButtonDisabled(error, patientInputs, homeInputs)}
             type="submit"
-            className={`bg-robineggblue py-4 rounded-lg text-white w-full mt-3 ${
+            loading={isLoading}
+            className={`bg-robineggblue py-4 flex justify-center gap-2 rounded-lg text-white w-full mt-3 font-poppins ${
               isButtonDisabled(error, patientInputs, homeInputs)
                 ? "cursor-default"
                 : "cursor-pointer"

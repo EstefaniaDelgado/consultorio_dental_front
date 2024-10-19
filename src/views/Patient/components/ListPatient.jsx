@@ -50,12 +50,12 @@ const ListPatients = () => {
   };
 
   return (
-    <div className="w-11/12 sm:w-3/4 md:w-1/2 max-w-screen-2xl flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md border border-robineggblue dark:border-none dark:bg-gradient-to-r from-spacecadet to-spacecadetlow">
+    <div className="w-11/12 sm:w-3/4 md:w-1/2 max-w-screen-2xl flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 shadow-md border border-robineggblue dark:border-none dark:bg-gradient-to-r from-spacecadet to-spacecadetlow font-poppins">
       <CardBody className="flex flex-col">
         <div className="mb-4 flex items-center justify-between">
           <Typography
             variant="h5"
-            className="text-spacecadet dark:text-robineggblue"
+            className="text-spacecadet dark:text-robineggblue font-poppins"
           >
             Nuestros Pacientes
           </Typography>
@@ -74,7 +74,7 @@ const ListPatients = () => {
               <Spinner />
             </div>
           ) : !patients || patients.length === 0 ? (
-            <p className="text-center text-spacecadet text-lg lg:text-2xl">
+            <p className="text-center text-spacecadet text-lg lg:text-2xl font-poppins">
               No hay registros aún!
             </p>
           ) : (
@@ -95,7 +95,7 @@ const ListPatients = () => {
                   />
                   <div>
                     <Typography
-                      className="text-spacecadet dark:text-robineggblue"
+                      className="text-spacecadet dark:text-robineggblue font-poppins"
                       variant="h6"
                     >
                       {`${patient.nombre} ${patient.apellido}`}
@@ -103,14 +103,14 @@ const ListPatients = () => {
                     <Typography
                       variant="small"
                       color="gray"
-                      className="dark:text-white"
+                      className="dark:text-white font-poppins"
                     >
                       {`${patient.domicilioSalidaDto.calle}, ${patient.domicilioSalidaDto.numero}, ${patient.domicilioSalidaDto.localidad}, ${patient.domicilioSalidaDto.provincia}`}
                     </Typography>
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-end min-w-20">
-                  <Typography color="blue-gray" className="dark:text-white">
+                  <Typography color="blue-gray" className="dark:text-white font-poppins">
                     {patient.dni}
                   </Typography>
                   <div className="flex gap-2">

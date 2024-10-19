@@ -196,7 +196,7 @@ const RegisterFormPatient = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="relative">
             <fieldset className="flex justify-around border border-robineggblue p-2 rounded-md">
-              <legend>Selecciona el género:</legend>
+              <legend className="px-1">Selecciona el género:</legend>
               <div className="flex items-center gap-2">
                 <input
                   type="radio"
