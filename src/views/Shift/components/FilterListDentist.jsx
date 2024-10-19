@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useState } from 'react';
+import { forwardRef, useImperativeHandle } from 'react';
 import {
   List,
   ListItem,
@@ -44,7 +44,7 @@ const FilterListDentist = forwardRef(({ filterOptions, selectedDentist, setSelec
         <List key={`dentist-id-${dentist.id}`}>
           <ListItem
             ripple={false}
-            className="py-1 pr-1 pl-4"
+            className="py-1 pr-1 pl-4 font-poppins"
             onClick={() => handleSelectedOption(dentist)}
           >
             {dentist.nombre} {dentist.apellido} {dentist.matricula}
@@ -70,7 +70,7 @@ const FilterListDentist = forwardRef(({ filterOptions, selectedDentist, setSelec
     >
       {Object.keys(selectedDentist).length ? (
         <List key={`dentist-id-${selectedDentist.id}`}>
-          <ListItem ripple={false} className="py-0 pr-1 pl-4 bg-blue-100">
+          <ListItem ripple={false} className="py-0 pr-1 pl-4 bg-blue-100 font-poppins">
             {selectedDentist.nombre} {selectedDentist.apellido}{' '}
             {selectedDentist.matricula}
             <ListItemSuffix>
@@ -86,5 +86,7 @@ const FilterListDentist = forwardRef(({ filterOptions, selectedDentist, setSelec
     </Card>
   );
 });
+
+FilterListDentist.displayName = 'FilterListDentist';
 
 export default FilterListDentist;

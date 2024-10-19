@@ -28,7 +28,7 @@ const SearchDentist = ({ onSearch, listDentists }) => {
 
   return (
     <div>
-      <Typography variant="small" className="mb-1 text-spacecadet font-bold">
+      <Typography variant="small" className="mb-1 text-spacecadet font-bold font-poppins dark:text-white">
         OPCIONES DE BÚSQUEDA
       </Typography>
       <form className="relative flex w-full">
@@ -37,18 +37,19 @@ const SearchDentist = ({ onSearch, listDentists }) => {
             <Button
               ripple={false}
               variant="text"
-              className="h-10 w-24 shrink-0 rounded-r-none border border-r-0 !border-robineggblue bg-white px-3 text-spacecadet font-extrabold "
+              className="h-10 w-24 shrink-0 rounded-r-none border border-r-0 !border-robineggblue bg-white px-3 text-spacecadet font-extrabold font-poppins"
             >
               {OPTIONS[itemSearch]}
             </Button>
           </MenuHandler>
-          <MenuList className="max-h-[20rem] max-w-[18rem] text-spacecadet font-bold">
+          <MenuList className="max-h-[20rem] max-w-[18rem] text-spacecadet font-bold font-poppins">
             {ATTRIBUTES.map((itemSearch, index) => {
               return (
                 <MenuItem
                   key={itemSearch}
                   value={itemSearch}
                   onClick={() => setItemSearch(index)}
+                  className='font-poppins'
                 >
                   {itemSearch}
                 </MenuItem>
@@ -63,7 +64,7 @@ const SearchDentist = ({ onSearch, listDentists }) => {
           maxLength={12}
           placeholder="Buscar Odontologo"
           value={searchTerm}
-          className="appearance-none rounded-l-none bg-white !border-robineggblue placeholder:text-gray-400 placeholder:opacity-100 focus:!border-gray-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="appearance-none rounded-l-none bg-white !border-robineggblue placeholder:text-gray-400 placeholder:opacity-100 focus:!border-gray-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none font-poppins"
           labelProps={{
             className: 'before:content-none after:content-none',
           }}
