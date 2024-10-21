@@ -7,6 +7,8 @@ import UpdatePatient from "../UpdatePatient";
 import DeletePatient from "../DeletePatient";
 import getImagesFromAPI from "@/services/getProfileImages";
 import SearchPatient from "./components/SearchPatient";
+import useAvatar from "../../../../Hooks/useAvatar";
+import defaultProfile from "@/assets/default-profile.svg"
 
 const ListPatients = () => {
   const [allPatients, setAllPatients] = useState();
@@ -14,23 +16,19 @@ const ListPatients = () => {
   const [selectedPatient, setSelectedPatient] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-  const [femaleProfileImage, setFemaleProfileImage] = useState([]);
-  const [maleProfileImage, setMaleProfileImage] = useState([]);
+ 
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const femaleImages = await getImagesFromAPI("female");
-        const maleImages = await getImagesFromAPI("male");
-        setFemaleProfileImage(femaleImages);
-        setMaleProfileImage(maleImages);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
+  const {femaleAvatars, maleAvatars, getAvatars}=useAvatar();
+
+  useEffect(()=>{
+    const fetchAvatars = async () => {
+      if (!femaleAvatars.length) await getAvatars('female');
+      if (!maleAvatars.length) await getAvatars('male');
     };
+    fetchAvatars();
+  },[femaleAvatars.length, maleAvatars.length])
 
-    fetchImages();
-  }, []);
+  
 
   useEffect(() => {
     const api = async () => {
@@ -93,8 +91,8 @@ const ListPatients = () => {
                     size="sm"
                     src={`${
                       patient.genero === "FEMENINO"
-                        ? femaleProfileImage[index]
-                        : maleProfileImage[index]
+                        ? femaleAvatars[index] || defaultProfile
+                        : maleAvatars[index] || defaultProfile
                     }`}
                     alt={patient.nombre}
                   />
