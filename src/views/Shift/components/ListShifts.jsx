@@ -15,6 +15,8 @@ import { useNavigate } from 'react-router-dom';
 import DeleteShift from './DeleteShift';
 import { useEffect, useState } from 'react';
 import Spinner from '../../../components/Spinner';
+import useAvatar from '../../../Hooks/useAvatar';
+import defaultProfile from '../../../assets/default-profile.svg'
 
 const TABLE_HEAD = ['Odontologo', 'Paciente', 'Fecha y Hora', 'Acciones'];
 
@@ -30,6 +32,18 @@ const ListShifts = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentShifts = listShifts?.slice(indexOfFirstItem, indexOfLastItem);
 
+  //avatar imagen odontologo
+  const { femaleAvatars, maleAvatars, getAvatars } = useAvatar();
+
+  useEffect(() => {
+    const fetchAvatars = async () => {
+      if (!femaleAvatars.length) await getAvatars('female');
+      if (!maleAvatars.length) await getAvatars('male');
+    };
+    fetchAvatars();
+  }, [femaleAvatars.length, maleAvatars.length]);
+
+  
   const navigate = useNavigate();
 
   const handleUpdateShift = (
@@ -160,7 +174,9 @@ const ListShifts = () => {
                         <div className="flex items-center gap-3 ">
                           <Avatar
                             src={
-                              'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg'
+                              odontologoSalidaDto.genero === 'FEMENINO'
+                                ? femaleAvatars[index] || defaultProfile
+                                : maleAvatars[index] || defaultProfile
                             }
                             alt={id}
                             size="sm"
@@ -188,7 +204,9 @@ const ListShifts = () => {
                         <div className="flex items-center gap-3 ">
                           <Avatar
                             src={
-                              'https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg'
+                              pacienteSalidaDto.genero === 'FEMENINO'
+                                ? femaleAvatars[index] || defaultProfile
+                                : maleAvatars[index] || defaultProfile
                             }
                             alt={id}
                             size="sm"
@@ -212,16 +230,6 @@ const ListShifts = () => {
                           </div>
                         </div>
                       </td>
-                      {/* <td className={classes}>
-                      <div className="w-max">
-                        <Chip
-                          variant="ghost"
-                          size="sm"
-                          value={online ? 'online' : 'offline'}
-                          color={online ? 'green' : 'blue-gray'}
-                        />
-                      </div>
-                    </td> */}
                       <td className={classes}>
                         <div className="w-max">
                           <Chip
@@ -290,7 +298,9 @@ const ListShifts = () => {
           className="font-normal dark:text-white"
         >
           Páginas {currentPage} de{' '}
-          {listShifts?.length ? Math.ceil(listShifts?.length / itemsPerPage): 0}
+          {listShifts?.length
+            ? Math.ceil(listShifts?.length / itemsPerPage)
+            : 0}
         </Typography>
         <div className="flex gap-2">
           <Button
