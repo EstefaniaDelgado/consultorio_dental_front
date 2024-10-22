@@ -10,24 +10,25 @@ import {
 import { useState } from 'react';
 import SearchIcon from '@/assets/search.svg';
 
-
 const ATTRIBUTES = ['Nombre', 'Apellido', 'Dni'];
 const OPTIONS = ['Nombre', 'Apellido', 'Dni'];
 
 const SearchPatient = ({ onSearch, listPatients }) => {
-
   const [itemSearch, setItemSearch] = useState(0);
   //guardar lo que busco el usuario
   const [searchPatient, setSearchPatient] = useState('');
 
-   const handleOnClickSearch = () => {
+  const handleOnClickSearch = () => {
     onSearch(listPatients, OPTIONS[itemSearch], searchPatient);
     setSearchPatient('');
   };
 
   return (
     <div>
-      <Typography variant="small" className="mb-1 text-spacecadet font-bold font-poppins dark:text-white">
+      <Typography
+        variant="small"
+        className="mb-1 text-spacecadet font-bold font-poppins dark:text-white"
+      >
         OPCIONES DE BÚSQUEDA
       </Typography>
       <div className="relative flex w-full">
@@ -48,7 +49,7 @@ const SearchPatient = ({ onSearch, listPatients }) => {
                   key={itemSearch}
                   value={itemSearch}
                   onClick={() => setItemSearch(index)}
-                  className='font-poppins'
+                  className="font-poppins"
                 >
                   {itemSearch}
                 </MenuItem>
@@ -57,10 +58,7 @@ const SearchPatient = ({ onSearch, listPatients }) => {
           </MenuList>
         </Menu>
         <Input
-          type="tel"
-          pattern="[0-9]*"
-          inputMode="numeric"
-          maxLength={12}
+          type="text"
           value={searchPatient}
           placeholder="Buscar Paciente"
           className="appearance-none rounded-l-none bg-white !border-robineggblue placeholder:text-gray-400 placeholder:opacity-100 focus:!border-gray-500 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none font-poppins"

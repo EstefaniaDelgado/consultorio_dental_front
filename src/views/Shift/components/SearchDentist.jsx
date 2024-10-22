@@ -58,9 +58,7 @@ const SearchDentist = ({ onSearch, listDentists }) => {
           </MenuList>
         </Menu>
         <Input
-          type="tel"
-          pattern="[0-9]*"
-          inputMode="numeric"
+          type="text"
           maxLength={12}
           placeholder="Buscar Odontologo"
           value={searchTerm}
