@@ -6,8 +6,8 @@ import Dentist from "@/assets/dentist-hero.png";
 const Hero = () => {
   return (
     <section className="px-4 mt-5 md:flex md:flex-row-reverse md:w-full md:justify-evenly md:items-center">
-      <article className="py-3 md:w-2/5">
-        <div className="relative bg-robineggblue m-auto w-80 h-[200px] max-w-48 rounded-[50px] md:max-w-none md:m-0 md:h-[310px] ">
+      <article className="py-3 md:w-2/4">
+        <div className="relative bg-robineggblue m-auto w-80 h-[200px] max-w-48 rounded-[50px] md:max-w-none  md:h-[310px] ">
           <img src={Dentist} alt="odontologo" className="absolute w-full bottom-0" />
         </div>
       </article>
@@ -42,7 +42,7 @@ const Hero = () => {
             <img
               src={Location}
               alt="ubicación"
-              className="bg-white border border-robineggblue lg:self-start lg:mt-1 dark:bg-spacecadet p-2 rounded"
+              className="bg-white border border-robineggblue lg:mt-1 dark:bg-spacecadet p-2 rounded"
             />
             <div className="dark:text-white">
               <p>Ubicación</p>

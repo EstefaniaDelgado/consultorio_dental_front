@@ -24,7 +24,7 @@ const ListShifts = () => {
   const [listShifts, setListShifts] = useState([]);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
+ 
   //Paginación
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
@@ -32,7 +32,7 @@ const ListShifts = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentShifts = listShifts?.slice(indexOfFirstItem, indexOfLastItem);
 
-  //avatar imagen odontologo
+  
   const { femaleAvatars, maleAvatars, getAvatars } = useAvatar();
 
   useEffect(() => {
@@ -71,6 +71,12 @@ const ListShifts = () => {
     };
     fetchShifts();
   }, []);
+
+  const getRandomAvatar = (gender) => {
+    const avatars = gender === 'FEMENINO' ? femaleAvatars : maleAvatars;
+    const randomIndex = Math.floor(Math.random() * avatars.length);
+    return avatars[randomIndex] || defaultProfile;
+  };
 
   if (error.length) {
     return <div>Ha ocurrido un error</div>;
@@ -174,9 +180,10 @@ const ListShifts = () => {
                         <div className="flex items-center gap-3 ">
                           <Avatar
                             src={
-                              odontologoSalidaDto.genero === 'FEMENINO'
+                              /* odontologoSalidaDto.genero === 'FEMENINO'
                                 ? femaleAvatars[index] || defaultProfile
-                                : maleAvatars[index] || defaultProfile
+                                : maleAvatars[index] || defaultProfile */
+                                getRandomAvatar(odontologoSalidaDto.genero)
                             }
                             alt={id}
                             size="sm"
@@ -204,9 +211,7 @@ const ListShifts = () => {
                         <div className="flex items-center gap-3 ">
                           <Avatar
                             src={
-                              pacienteSalidaDto.genero === 'FEMENINO'
-                                ? femaleAvatars[index] || defaultProfile
-                                : maleAvatars[index] || defaultProfile
+                              getRandomAvatar(pacienteSalidaDto.genero)
                             }
                             alt={id}
                             size="sm"
