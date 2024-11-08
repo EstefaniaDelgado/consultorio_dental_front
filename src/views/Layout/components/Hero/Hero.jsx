@@ -23,7 +23,7 @@ const Hero = () => {
         <p className="dark:text-white">
         Ofrecemos servicios odontológicos de alta calidad, respaldados por un equipo de expertos en una amplia gama de tratamientos, comprometidos con satisfacer las necesidades individuales de cada paciente.
         </p>
-        <button className="py-3 px-6 rounded-xl bg-white text-robineggblue md:self-start shadow-md font-bold dark:bg-gradient-to-r dark:from-spacecadet dark:to-spacecadetlow">
+        <button className="py-3 px-6 rounded-xl border-robineggblue border-2 bg-white text-robineggblue md:self-start shadow-md font-bold dark:bg-gradient-to-r dark:from-spacecadet dark:border-none dark:to-spacecadetlow">
           Saca tu turno!
         </button>
         <div className="pb-4 flex flex-col justify-start items-start gap-2 md:flex-row lg:gap-8">
