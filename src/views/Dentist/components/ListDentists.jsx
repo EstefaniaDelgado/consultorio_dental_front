@@ -87,10 +87,10 @@ const ListDentists = () => {
 
   return (
     <>
-      <h2 className="text-robineggblue font-extrabold text-center dark:text-white">
+      <h2 className="text-robineggblue font-extrabold text-center">
         REGISTROS
       </h2>
-      <h2 className="mt-4 mb-9 text-spacecadet text-2xl text-center font-extrabold md:text-4xl md:font-bold  ">
+      <h2 className="mt-4 mb-9 text-spacecadet dark:text-white text-2xl text-center font-extrabold md:text-4xl md:font-bold  ">
         NUESTROS ESPECIALISTAS
       </h2>
 
@@ -98,7 +98,7 @@ const ListDentists = () => {
         {isLoading ? (
           <Spinner />
         ) : !dentists.length ? (
-          <p className="absolute inset-0 flex items-center justify-center text-center text-spacecadet text-xl lg:text-2xl">
+          <p className="absolute inset-0 flex items-center justify-center text-center text-spacecadet text-xl lg:text-2xl dark:text-robineggblue">
             No hay registros aún!
           </p>
         ) : (
