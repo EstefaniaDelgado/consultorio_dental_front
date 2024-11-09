@@ -31,7 +31,7 @@ const Hero = () => {
             <img
               src={Phone}
               alt="teléfono"
-              className="bg-white border border-robineggblue dark:bg-spacecadet p-2 rounded "
+              className="bg-white border border-robineggblue dark:bg-spacecadet dark:border-none p-2 rounded "
             />
             <div className="dark:text-white">
               <p>Numero teléfonico</p>
@@ -42,7 +42,7 @@ const Hero = () => {
             <img
               src={Location}
               alt="ubicación"
-              className="bg-white border border-robineggblue lg:mt-1 dark:bg-spacecadet p-2 rounded"
+              className="bg-white border border-robineggblue lg:mt-1 dark:bg-spacecadet dark:border-none p-2 rounded"
             />
             <div className="dark:text-white">
               <p>Ubicación</p>
