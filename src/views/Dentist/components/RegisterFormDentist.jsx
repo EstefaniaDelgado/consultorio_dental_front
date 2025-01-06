@@ -80,7 +80,7 @@ const RegisterFormDentist = () => {
             <input
               placeholder="Daniel"
               type="text"
-              className="w-full p-2 pb-2 border border-robineggblue rounded-md outline-none"
+              className="w-full p-2 pb-2 border border-robineggblue rounded-md outline-none dark:text-black"
               value={inputs.nombre}
               name="nombre"
               onChange={handleOnChangeInputs}
@@ -96,7 +96,7 @@ const RegisterFormDentist = () => {
           <input
             placeholder="Peréz Sanchez"
             type="text"
-            className="w-full p-2 pb-2 border border-robineggblue rounded-md outline-none"
+            className="w-full p-2 pb-2 border border-robineggblue rounded-md outline-none dark:text-black"
             onChange={handleOnChangeInputs}
             name="apellido"
             value={inputs.apellido}
@@ -111,7 +111,7 @@ const RegisterFormDentist = () => {
           <input
             placeholder="1234"
             type="number"
-            className="w-full p-2 pb-2 border border-robineggblue rounded-md outline-none"
+            className="w-full p-2 pb-2 border border-robineggblue rounded-md outline-none dark:text-black"
             onChange={handleOnChangeInputs}
             name="matricula"
             value={inputs.matricula}

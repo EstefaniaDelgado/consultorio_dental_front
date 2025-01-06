@@ -5,10 +5,9 @@ import EditIcon from "@/assets/edit-icon.svg";
 import Spinner from "@/components/Spinner";
 import UpdatePatient from "../UpdatePatient";
 import DeletePatient from "../DeletePatient";
-import getImagesFromAPI from "@/services/getProfileImages";
 import SearchPatient from "./components/SearchPatient";
 import useAvatar from "../../../../Hooks/useAvatar";
-import defaultProfile from "@/assets/default-profile.svg"
+import defaultProfile from "@/assets/default-profile.svg";
 
 const ListPatients = () => {
   const [allPatients, setAllPatients] = useState();
@@ -16,19 +15,16 @@ const ListPatients = () => {
   const [selectedPatient, setSelectedPatient] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
- 
 
-  const {femaleAvatars, maleAvatars, getAvatars}=useAvatar();
+  const { femaleAvatars, maleAvatars, getAvatars } = useAvatar();
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchAvatars = async () => {
-      if (!femaleAvatars.length) await getAvatars('female');
-      if (!maleAvatars.length) await getAvatars('male');
+      if (!femaleAvatars.length) await getAvatars("female");
+      if (!maleAvatars.length) await getAvatars("male");
     };
     fetchAvatars();
-  },[femaleAvatars.length, maleAvatars.length])
-
-  
+  }, [femaleAvatars.length, maleAvatars.length, getAvatars]);
 
   useEffect(() => {
     const api = async () => {
