@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-tailwind/react";
+import {Typography } from "@material-tailwind/react";
 import Phone from "@/assets/phone.svg";
 import Location from "@/assets/location.svg";
 import Dentist from "@/assets/dentist-hero.png";
@@ -46,7 +46,7 @@ const Hero = () => {
             />
             <div className="dark:text-white">
               <p>Ubicación</p>
-              <p>Calle San Isidro,#58-77</p>
+              <p>Calle San Isidro, #58-77</p>
             </div>
           </div>
         </div>
