@@ -5,9 +5,9 @@ import EditIcon from '../../../assets/edit-icon.svg';
 import UpdateDentist from './UpdateDentist';
 import DeleteDentist from './DeleteDentist';
 import Asistent from '../../../assets/asistent.png';
-import defaultProfile from '../../../assets/default-profile.svg'
+import defaultProfile from '../../../assets/default-profile.svg';
 import Spinner from '../../../components/Spinner';
-import useAvatar from '../../../Hooks/useAvatar'
+import useAvatar from '../../../Hooks/useAvatar';
 
 const ListDentists = () => {
   const [dentists, setDentists] = useState([]);
@@ -16,7 +16,7 @@ const ListDentists = () => {
 
   const [open, setOpen] = useState(false);
 
-  const{femaleAvatars, maleAvatars, getAvatars}=useAvatar();
+  const { femaleAvatars, maleAvatars, getAvatars } = useAvatar();
 
   useEffect(() => {
     const fetchAvatars = async () => {
@@ -25,8 +25,6 @@ const ListDentists = () => {
     };
     fetchAvatars();
   }, [femaleAvatars.length, maleAvatars.length]);
-
-
 
   useEffect(() => {
     const api = async () => {
@@ -43,7 +41,7 @@ const ListDentists = () => {
   }, []);
 
   const handleOpen = (dentist) => {
-    setSelectedDentist(dentist);
+    setSelectedDentist(dentist);c
     setOpen(!open);
   };
 
@@ -52,13 +50,17 @@ const ListDentists = () => {
   });
 
   const renderList = () => {
-    return dentistOrder?.map((dentist,index) => (
+    return dentistOrder?.map((dentist, index) => (
       <div key={`dentist-${dentist.id}`} className="w-56 mx-auto h-full py-5">
         <article className="bg-white border border-robineggblue dark:border-spacecadetlow dark:bg-gradient-to-r from-spacecadet to-spacecadetlow rounded-[2rem] w-56 h-32 relative flex items-end justify-center dark:border-robineggblue">
           <figure className="bg-paleblue rounded-3xl w-1/3 h-20 mx-auto absolute -top-1/3  left-1/2 transform -translate-x-1/2">
             <img
               className="block mx-auto w-full h-full object-cover rounded-3xl"
-              src={dentist.genero === "FEMENINO" ? femaleAvatars[index] || defaultProfile: maleAvatars[index] || defaultProfile}
+              src={
+                dentist.genero === 'FEMENINO'
+                  ? femaleAvatars[index] || defaultProfile
+                  : maleAvatars[index] || defaultProfile
+              }
               alt="Asistente médico"
             />
           </figure>
